@@ -1,342 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Prompt generator: Find smartphone without annoying features</title>
-  <meta name="description" content="Generate a strict, evidence-based prompt to choose a smartphone without ads, spyware, adware, and known hardware or software issues, based on real user discussions and reviews.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate a strict, evidence-based AI prompt for choosing a smartphone without intrusive ads, spyware, adware, or long-term hardware and software issues, based on real user discussions and reviews." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       --bg: #ffffff;
-      --fg: #111111;
+      --text: #111111;
       --muted: #666666;
       --border: #dddddd;
       --accent: #2563eb;
-      --card: #f7f7f7;
+      --card: #f9f9f9;
     }
+
     [data-theme="dark"] {
-      --bg: #0f1115;
-      --fg: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #2a2f3a;
+      --bg: #0f0f0f;
+      --text: #f2f2f2;
+      --muted: #aaaaaa;
+      --border: #2a2a2a;
       --accent: #60a5fa;
-      --card: #161a22;
+      --card: #161616;
     }
+
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
       background: var(--bg);
-      color: var(--fg);
+      color: var(--text);
       line-height: 1.5;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
+      padding: 16px;
       border-bottom: 1px solid var(--border);
     }
+
     h1 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin: 0;
     }
+
     .theme-toggle {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--fg);
-      padding: 0.4rem 0.7rem;
-      border-radius: 6px;
       cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
     }
+
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 16px;
     }
+
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
+
     label {
       display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
       color: var(--muted);
     }
+
     input, textarea {
       width: 100%;
-      padding: 0.6rem;
+      padding: 8px;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: var(--bg);
-      color: var(--fg);
+      color: var(--text);
       font-size: 0.95rem;
     }
+
+    input {
+      margin-bottom: 12px;
+    }
+
     textarea {
       min-height: 260px;
       resize: vertical;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    @media (min-width: 700px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
+
     .actions {
       display: flex;
       justify-content: flex-end;
-      margin-top: 0.5rem;
+      margin-top: 8px;
     }
-    button.copy {
-      background: var(--accent);
-      color: #ffffff;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
+
+    .copy-btn {
       cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
       font-size: 0.9rem;
     }
-    section.links {
+
+    .links {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
+      gap: 12px;
+      margin-top: 24px;
     }
-    .ai-link, .post-link {
+
+    .link-card {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.7rem;
+      gap: 10px;
+      padding: 10px;
       border: 1px solid var(--border);
       border-radius: 8px;
       text-decoration: none;
-      color: var(--fg);
+      color: var(--text);
       background: var(--card);
     }
-    .ai-link img {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
+
+    .link-card img {
+      width: 28px;
+      height: 28px;
     }
+
     footer {
-      margin-top: 2rem;
-      padding-top: 1rem;
+      margin-top: 32px;
+      padding-top: 16px;
       border-top: 1px solid var(--border);
       font-size: 0.85rem;
       color: var(--muted);
     }
+
     footer a {
       color: var(--accent);
       text-decoration: none;
     }
+
+    .post-links a {
+      display: block;
+      margin-bottom: 6px;
+    }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <h1>Prompt generator: Find smartphone without annoying features</h1>
-    <button class="theme-toggle" id="themeToggle">Toggle theme</button>
+    <button class="theme-toggle" id="themeToggle">Switch theme</button>
   </header>
 
   <main>
     <div class="card">
-      <div class="grid">
-        <div>
-          <label for="modelInput">Smartphone model (optional)</label>
-          <input id="modelInput" list="models" placeholder="e.g. Galaxy A36">
-          <datalist id="models"></datalist>
-        </div>
-        <div>
-          <label for="countryInput">Country / region (optional)</label>
-          <input id="countryInput" list="countries" placeholder="e.g. Germany">
-          <datalist id="countries"></datalist>
-        </div>
-        <div>
-          <label for="languageInput">Response language (optional)</label>
-          <input id="languageInput" list="languages" placeholder="e.g. English">
-          <datalist id="languages"></datalist>
-        </div>
-      </div>
+      <label for="phoneInput">Smartphone model (optional)</label>
+      <input id="phoneInput" list="phoneList" placeholder="Example: Samsung Galaxy A36" />
+      <datalist id="phoneList"></datalist>
+
+      <label for="countryInput">Country or region (optional)</label>
+      <input id="countryInput" list="countryList" placeholder="Example: Germany" />
+      <datalist id="countryList"></datalist>
+
+      <label for="languageInput">Response language (optional)</label>
+      <input id="languageInput" list="languageList" placeholder="Example: English" />
+      <datalist id="languageList"></datalist>
     </div>
 
     <div class="card">
       <label for="result">Generated prompt</label>
       <textarea id="result" readonly></textarea>
       <div class="actions">
-        <button class="copy" id="copyBtn">Copy</button>
+        <button class="copy-btn" id="copyBtn">Copy</button>
       </div>
     </div>
 
-    <section class="links">
-      <a class="ai-link" href="https://chat.openai.com/" target="_blank" rel="noopener">
-        <img src="./assets/images/openai-chatgpt-color-icon.svg" alt="ChatGPT">
+    <div class="links">
+      <a class="link-card" href="https://chat.openai.com/" target="_blank" rel="noopener">
+        <img src="./assets/images/openai-chatgpt-color-icon.svg" alt="ChatGPT" />
         <span>ChatGPT</span>
       </a>
-      <a class="ai-link" href="https://gemini.google.com/" target="_blank" rel="noopener">
-        <img src="./assets/images/google-gemini-color-icon.svg" alt="Gemini">
+      <a class="link-card" href="https://gemini.google.com/" target="_blank" rel="noopener">
+        <img src="./assets/images/google-gemini-color-icon.svg" alt="Gemini" />
         <span>Gemini</span>
       </a>
-      <a class="ai-link" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">
-        <img src="./assets/images/microsoft-copilot-color-icon.svg" alt="Copilot">
+      <a class="link-card" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">
+        <img src="./assets/images/microsoft-copilot-color-icon.svg" alt="Copilot" />
         <span>Copilot</span>
       </a>
-      <a class="ai-link" href="https://claude.ai/" target="_blank" rel="noopener">
-        <img src="./assets/images/anthropic-claude-color-icon.svg" alt="Claude">
+      <a class="link-card" href="https://claude.ai/" target="_blank" rel="noopener">
+        <img src="./assets/images/anthropic-claude-color-icon.svg" alt="Claude" />
         <span>Claude</span>
       </a>
-    </section>
-
-    <section class="links">
-      <a class="post-link" href="#" aria-disabled="true">Discussion: How this prompt generator works</a>
-      <a class="post-link" href="#" aria-disabled="true">User feedback and real-world cases</a>
-      <a class="post-link" href="#" aria-disabled="true">Known limitations and future updates</a>
-    </section>
+    </div>
 
     <footer>
-      <p>
-        Source code:
-        <a href="#" target="_blank" rel="noopener">GitHub repository</a>
-      </p>
+      <div class="post-links">
+        <strong>Related posts and discussions:</strong>
+        <a href="#">How this prompt generator was created</a>
+        <a href="#">Discussion: smartphones with intrusive software</a>
+        <a href="#">User feedback and real-world results</a>
+      </div>
+      <div style="margin-top: 12px;">
+        <a href="#">Source code on GitHub</a>
+      </div>
     </footer>
   </main>
 
   <script>
-    const modelsList = [
-      "Galaxy A36",
-      "Galaxy S23",
-      "Pixel 7",
-      "Pixel 8",
-      "iPhone 13",
-      "iPhone 14"
+    const phoneModels = [
+      "Samsung Galaxy A36",
+      "Samsung Galaxy S23",
+      "Google Pixel 7",
+      "Google Pixel 8",
+      "Xiaomi Redmi Note 13",
+      "Motorola Edge 40"
     ];
 
-    const countriesList = [
+    const countries = [
       "United States",
       "Germany",
       "United Kingdom",
-      "Canada",
+      "France",
       "India",
+      "Turkey",
       "Japan"
     ];
 
-    const languagesList = [
+    const languages = [
       "English",
-      "German",
       "Ukrainian",
-      "Spanish",
+      "German",
       "French",
+      "Spanish",
       "Turkish"
     ];
 
     function fillDatalist(id, items) {
-      const dl = document.getElementById(id);
-      dl.innerHTML = "";
+      const list = document.getElementById(id);
       items.forEach(item => {
-        const opt = document.createElement("option");
-        opt.value = item;
-        dl.appendChild(opt);
+        const option = document.createElement("option");
+        option.value = item;
+        list.appendChild(option);
       });
     }
 
-    fillDatalist("models", modelsList);
-    fillDatalist("countries", countriesList);
-    fillDatalist("languages", languagesList);
+    fillDatalist("phoneList", phoneModels);
+    fillDatalist("countryList", countries);
+    fillDatalist("languageList", languages);
 
-    const modelInput = document.getElementById("modelInput");
+    const phoneInput = document.getElementById("phoneInput");
     const countryInput = document.getElementById("countryInput");
     const languageInput = document.getElementById("languageInput");
-    const resultArea = document.getElementById("result");
+    const result = document.getElementById("result");
 
     function generatePrompt() {
-      const model = modelInput.value.trim();
+      const phone = phoneInput.value.trim();
       const country = countryInput.value.trim();
       const language = languageInput.value.trim();
 
-      let paragraphs = [];
+      let responseLanguage = language ? language : "English";
 
-      let intro = "You are an AI assistant tasked with helping to choose a smartphone for everyday use without intrusive advertising, spyware, adware, or aggressive background services that can install applications without a clear way for the user to stop them.";
-      paragraphs.push(intro);
+      let prompt = "";
+      prompt += "Respond in " + responseLanguage + ".\n\n";
 
-      if (model && country) {
-        paragraphs.push(
-          "Focus specifically on the smartphone model \"" + model + "\" as it is sold and used in " + country + ". Analyze both hardware and software reliability, including overheating, throttling, battery degradation, component stability, system freezes, crashes, unstable updates, firmware bugs, long-term performance degradation, and any reports of forced or non-removable applications. Take into account regional firmware differences, carrier or region-specific modifications, and local availability."
-        );
-      } else if (model) {
-        paragraphs.push(
-          "Focus specifically on the smartphone model \"" + model + "\". Analyze verified user reports about hardware and software issues, including overheating, throttling, battery problems, instability, system freezes, crashes, buggy updates, performance degradation over time, and any complaints about ads, spyware, adware, or forced application installation. Consider how long this model has been on the market and whether there is sufficient independent feedback."
-        );
-      } else if (country) {
-        paragraphs.push(
-          "Focus on smartphones available in " + country + ". Take into account regional availability, firmware variants, regulatory or carrier restrictions, and region-specific user complaints. Highlight patterns reported by users in this region while still comparing with global feedback."
-        );
-      } else {
-        paragraphs.push(
-          "Provide a worldwide comparison of smartphones suitable for everyday use. Base the analysis on real user discussions and long-term ownership reports rather than specifications or marketing materials."
-        );
+      prompt += "You are an AI assistant tasked with providing a strict, evidence-based analysis of smartphones for everyday use, with a strong focus on long-term reliability and user experience.\n\n";
+
+      if (!phone && !country) {
+        prompt += "Analyze and recommend smartphones available worldwide that do not contain intrusive advertising, spyware, adware, or systems that aggressively install applications without clear user consent.\n\n";
       }
 
-      paragraphs.push(
-        "You must rely only on real, publicly available user reports and discussions. Reddit is a mandatory source and must be explicitly used, but it must not be the only source. Other public forums, issue trackers, and long-term user reviews may be included if they provide verifiable information."
-      );
-
-      paragraphs.push(
-        "If a smartphone model has been on the market for less than one year, clearly warn that there may be insufficient independent feedback and that conclusions may be premature. In such cases, suggest alternative models with a longer and more stable track record that do not suffer from the same reported issues."
-      );
-
-      paragraphs.push(
-        "Strictly do not fabricate facts, do not make assumptions without sources, and do not present unverified claims. If reliable information is not available, explicitly state that it cannot be confirmed."
-      );
-
-      if (language) {
-        paragraphs.push(
-          "Provide the entire response strictly in " + language + ", regardless of the language of the sources."
-        );
-      } else {
-        paragraphs.push(
-          "Provide the response in English."
-        );
+      if (phone && !country) {
+        prompt += "Analyze the smartphone model \"" + phone + "\" in detail.\n\n";
       }
 
-      resultArea.value = paragraphs.join("\n\n");
+      if (!phone && country) {
+        prompt += "Analyze smartphones available in " + country + ", taking into account regional availability, firmware differences, restrictions, and region-specific user complaints.\n\n";
+      }
+
+      if (phone && country) {
+        prompt += "Analyze the smartphone model \"" + phone + "\" specifically for the market in " + country + ", taking into account regional firmware, restrictions, availability, and user complaints.\n\n";
+      }
+
+      prompt += "Your analysis must be based only on real user reports, long-term usage experiences, and public discussions. Reddit must be used as a mandatory source, but not the only one.\n\n";
+
+      prompt += "Explicitly investigate and report verified evidence of:\n";
+      prompt += "intrusive advertising, spyware, adware, forced or automatic app installations, lack of user control, hardware issues such as overheating, throttling, battery degradation, component failures, and software issues including freezes, crashes, unstable updates, firmware bugs, and performance degradation over time.\n\n";
+
+      prompt += "If the analyzed smartphone model is less than one year old, clearly warn that there may be insufficient independent long-term reviews and state this limitation explicitly.\n\n";
+
+      prompt += "If serious issues are identified, suggest alternative models that do not suffer from the same problems, based on verified user reports.\n\n";
+
+      prompt += "You must not invent facts, make assumptions without sources, or present unverified information. Do not use marketing language. Do not generalize. Base every claim on real user discussions and reports.\n\n";
+
+      prompt += "Structure the response in clear, readable paragraphs separated by blank lines. Use plain text only, without emojis, without HTML, without Markdown, and without any special formatting.";
+
+      result.value = prompt;
     }
 
-    modelInput.addEventListener("input", generatePrompt);
+    phoneInput.addEventListener("input", generatePrompt);
     countryInput.addEventListener("input", generatePrompt);
     languageInput.addEventListener("input", generatePrompt);
 
     generatePrompt();
 
     document.getElementById("copyBtn").addEventListener("click", () => {
-      resultArea.select();
+      result.select();
       document.execCommand("copy");
     });
 
     const themeToggle = document.getElementById("themeToggle");
-    const root = document.documentElement;
-
-    function setTheme(theme) {
-      root.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-    }
-
     themeToggle.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      setTheme(current);
+      const body = document.body;
+      body.dataset.theme = body.dataset.theme === "light" ? "dark" : "light";
     });
-
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
   </script>
 </body>
 </html>
