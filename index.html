@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Quality Smartphone Prompt Generator</title>
+    <meta name="description" content="Generate a high-quality text prompt for AI assistants to help you choose a smartphone free from spyware, adware, and major hardware/software issues, based on real user reviews.">
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            --color-bg: #ffffff;
+            --color-text: #1f2937;
+            --color-primary: #10b981;
+            --color-border: #d1d5db;
+            --color-input-bg: #f9fafb;
+            --color-copy-bg: #374151;
+            --color-copy-text: #ffffff;
+            --color-link-bg: #f3f4f6;
+        }
+        [data-theme="dark"] {
+            --color-bg: #1f2937;
+            --color-text: #f3f4f6;
+            --color-primary: #34d399;
+            --color-border: #4b5563;
+            --color-input-bg: #374151;
+            --color-copy-bg: #d1d5db;
+            --color-copy-text: #1f2937;
+            --color-link-bg: #374151;
+        }
+
+        /* Base Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: var(--color-bg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            background-color: var(--color-input-bg);
+            color: var(--color-text);
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+
+        /* Prompt Output Area */
+        .output-container {
+            margin-top: 30px;
+            border-top: 2px dashed var(--color-border);
+            padding-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            background-color: var(--color-input-bg);
+            color: var(--color-text);
+            box-sizing: border-box;
+            resize: vertical;
+            font-size: 0.9em;
+        }
+        .copy-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--color-copy-bg);
+            color: var(--color-copy-text);
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .copy-button:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .theme-switch button {
+            background: none;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .theme-switch button:hover {
+            background-color: var(--color-link-bg);
+        }
+
+        /* AI Assistant Links */
+        .ai-links {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+        .ai-links h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+        .ai-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .ai-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--color-link-bg);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .ai-link:hover {
+            background-color: var(--color-border);
+        }
+        .ai-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Post Links */
+        .post-links {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.9em;
+        }
+        .post-links a {
+            color: var(--color-primary);
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .post-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .ai-list {
+                flex-direction: column;
+            }
+            .ai-link {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="theme-switch">
+            <button id="theme-toggle">Toggle Dark Mode</button>
+        </div>
+
+        <h1>📱 Smartphone AI Prompt Generator</h1>
+
+        <form id="prompt-form">
+            <div class="form-group">
+                <label for="smartphone-model">Smartphone Model (Optional)</label>
+                <input type="text" id="smartphone-model" list="model-list" placeholder="e.g., Samsung Galaxy S24 Ultra">
+                <datalist id="model-list"></datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country (Optional)</label>
+                <input type="text" id="country" list="country-list" placeholder="e.g., Germany">
+                <datalist id="country-list"></datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="language">AI Response Language (Optional)</label>
+                <input type="text" id="language" list="language-list" placeholder="e.g., Japanese (Default: English)">
+                <datalist id="language-list"></datalist>
+            </div>
+        </form>
+
+        <div class="output-container">
+            <h2>Generated Prompt</h2>
+            <textarea id="generated-prompt" readonly></textarea>
+            <button class="copy-button" id="copy-button">Copy Prompt</button>
+        </div>
+
+        <div class="ai-links">
+            <h2>Send the Prompt to Your Favorite AI Assistant:</h2>
+            <div class="ai-list">
+                <a class="ai-link" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
+                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> ChatGPT
+                </a>
+                <a class="ai-link" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">
+                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Gemini
+                </a>
+                <a class="ai-link" href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">
+                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Copilot
+                </a>
+                <a class="ai-link" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">
+                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Claude
+                </a>
+            </div>
+        </div>
+
+        <div class="post-links">
+            <p>Share this tool:</p>
+            <a href="#" aria-label="Link to Reddit Post" onclick="return false;">Reddit Post Link (Placeholder)</a>
+            <a href="#" aria-label="Link to Hacker News Post" onclick="return false;">Hacker News Post Link (Placeholder)</a>
+            <a href="#" aria-label="Link to X Post (Twitter)" onclick="return false;">X Post Link (Placeholder)</a>
+        </div>
+    </div>
+
+    <script>
+        const modelInput = document.getElementById('smartphone-model');
+        const countryInput = document.getElementById('country');
+        const languageInput = document.getElementById('language');
+        const promptTextarea = document.getElementById('generated-prompt');
+        const copyButton = document.getElementById('copy-button');
+        const themeToggle = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        // --- Data Population (Datalists) ---
+        const popularModels = ['Samsung Galaxy S24', 'Google Pixel 8 Pro', 'Xiaomi 14', 'OnePlus 12', 'Apple iPhone 15'];
+        const countries = ['USA', 'United Kingdom', 'Germany', 'India', 'Brazil', 'Japan', 'South Korea', 'Australia', 'Canada'];
+        const languages = ['English', 'Spanish', 'French', 'German', 'Hindi', 'Japanese', 'Chinese', 'Portuguese', 'Arabic'];
+
+        function populateDatalist(id, data) {
+            const datalist = document.getElementById(id);
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                datalist.appendChild(option);
+            });
+        }
+
+        populateDatalist('model-list', popularModels);
+        populateDatalist('country-list', countries);
+        populateDatalist('language-list', languages);
+
+        // --- Theme Switching ---
+        function setInitialTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            root.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        function toggleTheme() {
+            const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        setInitialTheme();
+
+        // --- Prompt Generation Logic ---
+        function updatePrompt() {
+            const model = modelInput.value.trim();
+            const country = countryInput.value.trim();
+            const language = languageInput.value.trim();
+
+            let prompt = "";
+
+            // 1. Language Requirement (Must be first)
+            if (language) {
+                prompt += `**Respond strictly in ${language}.** `;
+            } else {
+                prompt += `**Respond strictly in English.** `;
+            }
+
+            // 2. Base & Core Requirements (Always included)
+            prompt += "I need a high-quality analysis and recommendation for a smartphone for everyday use. The analysis must strictly focus on real-world user experiences and public discussions, with **Reddit being a mandatory source** but not the only one. **Do not invent facts, make assumptions, or use unverified information.** Only rely on verified user reports and public sources. ";
+            prompt += "Specifically investigate and report on: **intrusive advertising, spyware, adware, aggressive forced app installations without an opt-out, overheating/throttling, battery stability, long-term component degradation, software freezes/crashes, unstable updates, firmware bugs, and performance degradation over 6+ months of use.** ";
+
+
+            // 3. Model/Country Specific Logic
+            if (model && country) {
+                // Both provided
+                prompt += `**Target Model & Region:** Analyze the "${model}" specifically in the context of user reports from **${country}**. Investigate regional firmware differences, local carrier restrictions, and complaints specific to the ${country} market. `;
+            } else if (model) {
+                // Model Only
+                prompt += `**Target Model:** Analyze the "${model}" globally. Provide a detailed verification of its long-term hardware and software stability, user complaints about forced apps/ads, its regional firmware differences, and the length of time it has been on the market. `;
+            } else if (country) {
+                // Country Only
+                prompt += `**General Search (Regional Focus):** Provide recommendations for the **${country}** market. Take into account regional model availability, local firmware versions, specific government/carrier restrictions, and user complaints unique to ${country}. `;
+            } else {
+                // General (All Empty)
+                prompt += "Perform a general search for the best global smartphone recommendations that explicitly avoid the listed issues. **Mandatory Requirement:** If any recommended model has been on the market for less than one year, you must explicitly warn the user about the lack of sufficient independent, long-term reviews and suggest an alternative proven model. ";
+            }
+
+            // 4. Final Action (Always included)
+            prompt += "Finally, suggest 2-3 alternative models that are known to be free from these critical hardware, software, and privacy issues.";
+
+            promptTextarea.value = prompt.trim();
+        }
+
+        // --- Copy Functionality ---
+        function copyPrompt() {
+            promptTextarea.select();
+            promptTextarea.setSelectionRange(0, 99999); // For mobile devices
+            try {
+                document.execCommand('copy');
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Prompt';
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                alert('Could not copy text. Please select and copy manually.');
+                console.error('Copy failed: ', err);
+            }
+        }
+
+        // --- Event Listeners ---
+        modelInput.addEventListener('input', updatePrompt);
+        countryInput.addEventListener('input', updatePrompt);
+        languageInput.addEventListener('input', updatePrompt);
+        copyButton.addEventListener('click', copyPrompt);
+
+        // Initial generation
+        updatePrompt();
+    </script>
+
+</body>
+</html>
