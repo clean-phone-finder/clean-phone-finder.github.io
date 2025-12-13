@@ -1,0 +1,29 @@
+Create a single self-contained HTML file in English with embedded CSS and JavaScript, without using any CSS frameworks, JavaScript frameworks, libraries, or CDNs.
+
+The purpose of the page is to help the user generate a high-quality text prompt for choosing a smartphone for everyday use without intrusive advertising, spyware, or adware that can aggressively install applications without the ability to stop it, while also taking into account real hardware issues such as overheating, throttling, battery problems, and component stability, as well as software issues including freezes, crashes, unstable updates, firmware bugs, and performance degradation over time, based on real user reviews and discussions.
+
+The page must be fully static, responsive, with minimalistic CSS, and support light and dark themes with the ability to switch between them. All interface text, placeholders, SEO content, and the generated prompt must be in English.
+
+The form must include an optional field for entering a smartphone model name with a datalist of popular models that will be filled later. It must include an optional field for selecting a country with a datalist of countries that will be filled later. It must include an optional field for selecting the response language with a datalist of languages that will be filled later. All fields may be empty or filled independently of each other.
+
+There must be a read-only textarea from which the generated result can be copied, along with a separate Copy button. The textarea content must automatically update when the smartphone name, country, or language changes.
+
+The logic for generating the text in the textarea is as follows. If the smartphone name, country, and language are all empty, generate a general English prompt for worldwide smartphone selection based on real user discussions and reviews, with mandatory use of Reddit as one of the main sources. This prompt must explicitly require warning the user if the model is less than one year old and therefore lacks sufficient independent reviews, and must also require suggesting alternative models without the described issues.
+
+If only the country is provided, the prompt must take into account regional specifics of that country, model availability, regional firmware, restrictions, and user complaints specific to that region, while Reddit remains a mandatory source.
+
+If only the smartphone name is provided, the prompt must focus on analyzing that specific model, including verification of hardware and software issues, user complaints about advertising, spyware, adware, forced app installations, regional firmware differences, and the length of time the model has been on the market.
+
+If both the smartphone name and the country are provided, the prompt must take both parameters into account simultaneously without ignoring either of them.
+
+If a language is provided, regardless of other fields, the prompt must clearly require the AI assistant to respond in that specific language. If no language is provided, the response must be in English.
+
+In all cases, the generated prompt must strictly prohibit the AI from inventing facts, making assumptions without sources, or presenting unverified information. The wording must require reliance only on real user reports, discussions, and public sources, with an explicit statement that Reddit is a mandatory but not the only source.
+
+Below the form, there must be links to free AI assistants ChatGPT, Gemini, Copilot, and Claude, each with an image icon and name, using local icon files without generating the images themselves.
+
+Below that, there must be placeholder links to posts about this HTML page.
+
+In the head section, include only basic SEO tags, including title and meta description, without extended SEO or structured data.
+
+The result must be a fully ready HTML file with no explanations, comments, or any text outside of the code.
