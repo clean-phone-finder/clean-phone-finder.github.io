@@ -3,373 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-Quality Smartphone Prompt Generator</title>
-    <meta name="description" content="Generate a high-quality text prompt for AI assistants to help you choose a smartphone free from spyware, adware, and major hardware/software issues, based on real user reviews.">
+    <title>Smartphone Prompt Generator | Ad-Free, Reliable Picks</title>
+    <meta name="description" content="Generate a high-quality, focused prompt to find reliable, ad-free smartphones free from common hardware and software issues, based on real user reviews.">
     <style>
-        /* CSS Variables for Theming */
         :root {
-            --color-bg: #ffffff;
-            --color-text: #1f2937;
-            --color-primary: #10b981;
-            --color-border: #d1d5db;
-            --color-input-bg: #f9fafb;
-            --color-copy-bg: #374151;
-            --color-copy-text: #ffffff;
-            --color-link-bg: #f3f4f6;
-        }
-        [data-theme="dark"] {
-            --color-bg: #1f2937;
-            --color-text: #f3f4f6;
-            --color-primary: #34d399;
-            --color-border: #4b5563;
-            --color-input-bg: #374151;
-            --color-copy-bg: #d1d5db;
-            --color-copy-text: #1f2937;
-            --color-link-bg: #374151;
+            --light-bg: #ffffff;
+            --light-text: #333333;
+            --light-input-bg: #f5f5f5;
+            --light-border: #cccccc;
+            --light-button-bg: #007bff;
+            --light-button-hover: #0056b3;
+            --light-link: #007bff;
+            --light-textarea-bg: #eeeeee;
+
+            --dark-bg: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --dark-input-bg: #333333;
+            --dark-border: #555555;
+            --dark-button-bg: #5a7796;
+            --dark-button-hover: #455a73;
+            --dark-link: #8ab4f8;
+            --dark-textarea-bg: #2b2b2b;
         }
 
-        /* Base Styling */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text);
             margin: 0;
             padding: 20px;
+            background-color: var(--light-bg);
+            color: var(--light-text);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.6;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            background-color: var(--color-bg);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: var(--color-primary);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.8em;
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
         }
 
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
         }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
         }
-        input[type="text"] {
+
+        input[type="text"], select, textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid var(--color-border);
+            margin-bottom: 20px;
+            border: 1px solid var(--light-border);
             border-radius: 4px;
-            background-color: var(--color-input-bg);
-            color: var(--color-text);
             box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-        input[type="text"]:focus {
-            border-color: var(--color-primary);
-            outline: none;
+            background-color: var(--light-input-bg);
+            color: var(--light-text);
+            transition: border-color 0.3s, background-color 0.3s;
         }
 
-        /* Prompt Output Area */
-        .output-container {
-            margin-top: 30px;
-            border-top: 2px dashed var(--color-border);
-            padding-top: 20px;
+        body.dark-mode input[type="text"],
+        body.dark-mode select,
+        body.dark-mode textarea {
+            border: 1px solid var(--dark-border);
+            background-color: var(--dark-input-bg);
+            color: var(--dark-text);
         }
+
         textarea {
-            width: 100%;
-            height: 250px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            background-color: var(--color-input-bg);
-            color: var(--color-text);
-            box-sizing: border-box;
             resize: vertical;
-            font-size: 0.9em;
-        }
-        .copy-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            background-color: var(--color-copy-bg);
-            color: var(--color-copy-text);
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .copy-button:hover {
-            background-color: var(--color-primary);
+            min-height: 200px;
+            background-color: var(--light-textarea-bg);
         }
 
-        /* Theme Toggle */
-        .theme-switch {
-            text-align: right;
+        body.dark-mode textarea {
+            background-color: var(--dark-textarea-bg);
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin-bottom: 20px;
         }
-        .theme-switch button {
-            background: none;
-            border: 1px solid var(--color-border);
-            color: var(--color-text);
-            padding: 8px 12px;
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .theme-switch button:hover {
-            background-color: var(--color-link-bg);
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
 
-        /* AI Assistant Links */
+        #copy-button {
+            background-color: var(--light-button-bg);
+            color: white;
+            margin-left: 10px;
+        }
+
+        #copy-button:hover {
+            background-color: var(--light-button-hover);
+        }
+
+        body.dark-mode #copy-button {
+            background-color: var(--dark-button-bg);
+        }
+
+        body.dark-mode #copy-button:hover {
+            background-color: var(--dark-button-hover);
+        }
+
+        #theme-toggle {
+            background: none;
+            border: 1px solid var(--light-border);
+            color: var(--light-text);
+            padding: 5px 10px;
+        }
+
+        body.dark-mode #theme-toggle {
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text);
+        }
+
+        /* AI Assistants Section */
+        .ai-assistants {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-border);
+        }
+
+        body.dark-mode .ai-assistants {
+            border-top: 1px solid var(--dark-border);
+        }
+
+        .ai-assistants h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .ai-links {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--color-border);
-        }
-        .ai-links h2 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--color-text);
-        }
-        .ai-list {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-        }
-        .ai-link {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: var(--color-link-bg);
-            border-radius: 6px;
-            text-decoration: none;
-            color: var(--color-text);
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        .ai-link:hover {
-            background-color: var(--color-border);
-        }
-        .ai-icon {
-            display: inline-block;
-            margin-right: 10px;
-            font-size: 1.2em;
+            gap: 20px;
         }
 
-        /* Post Links */
-        .post-links {
+        .ai-link {
+            text-decoration: none;
+            color: var(--light-link);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid var(--light-border);
+            border-radius: 6px;
+            width: 120px;
+            text-align: center;
+        }
+
+        body.dark-mode .ai-link {
+            color: var(--dark-link);
+            border: 1px solid var(--dark-border);
+        }
+
+        .ai-link img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 8px;
+            /* Placeholder styling */
+            background-color: var(--light-border);
+            border-radius: 50%;
+        }
+
+        body.dark-mode .ai-link img {
+            background-color: var(--dark-border);
+        }
+
+        /* Footer Links */
+        .footer-links {
             margin-top: 40px;
+            text-align: center;
             padding-top: 20px;
-            border-top: 1px solid var(--color-border);
+            border-top: 1px solid var(--light-border);
             font-size: 0.9em;
         }
-        .post-links a {
-            color: var(--color-primary);
-            margin-right: 15px;
-            text-decoration: none;
-        }
-        .post-links a:hover {
-            text-decoration: underline;
+
+        body.dark-mode .footer-links {
+            border-top: 1px solid var(--dark-border);
         }
 
-        /* Responsiveness */
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
-            .ai-list {
-                flex-direction: column;
-            }
-            .ai-link {
-                width: 100%;
-            }
+        .footer-links a {
+            color: var(--light-link);
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        body.dark-mode .footer-links a {
+            color: var(--dark-link);
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-
-        <div class="theme-switch">
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
             <button id="theme-toggle">Toggle Dark Mode</button>
         </div>
 
-        <h1>📱 Smartphone AI Prompt Generator</h1>
+        <h1>Smartphone Prompt Generator</h1>
 
         <form id="prompt-form">
             <div class="form-group">
-                <label for="smartphone-model">Smartphone Model (Optional)</label>
-                <input type="text" id="smartphone-model" list="model-list" placeholder="e.g., Samsung Galaxy S24 Ultra">
-                <datalist id="model-list"></datalist>
+                <div>
+                    <label for="smartphone-name">Smartphone Model (Optional):</label>
+                    <input type="text" id="smartphone-name" list="smartphone-datalist" placeholder="e.g., Google Pixel 8 Pro">
+                    <datalist id="smartphone-datalist">
+                        </datalist>
+                </div>
+
+                <div>
+                    <label for="country">Target Country (Optional):</label>
+                    <input type="text" id="country" list="country-datalist" placeholder="e.g., Germany">
+                    <datalist id="country-datalist">
+                        </datalist>
+                </div>
+
+                <div>
+                    <label for="language">Response Language (Optional):</label>
+                    <input type="text" id="language" list="language-datalist" placeholder="e.g., Ukrainian">
+                    <datalist id="language-datalist">
+                        </datalist>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="country">Country (Optional)</label>
-                <input type="text" id="country" list="country-list" placeholder="e.g., Germany">
-                <datalist id="country-list"></datalist>
-            </div>
+            <h2>Generated AI Prompt</h2>
 
-            <div class="form-group">
-                <label for="language">AI Response Language (Optional)</label>
-                <input type="text" id="language" list="language-list" placeholder="e.g., Japanese (Default: English)">
-                <datalist id="language-list"></datalist>
+            <textarea id="generated-prompt" readonly placeholder="Your custom prompt will appear here..."></textarea>
+
+            <div class="button-group">
+                <button type="button" id="copy-button">Copy Prompt</button>
             </div>
         </form>
 
-        <div class="output-container">
-            <h2>Generated Prompt</h2>
-            <textarea id="generated-prompt" readonly></textarea>
-            <button class="copy-button" id="copy-button">Copy Prompt</button>
-        </div>
-
-        <div class="ai-links">
-            <h2>Send the Prompt to Your Favorite AI Assistant:</h2>
-            <div class="ai-list">
-                <a class="ai-link" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> ChatGPT
+        <section class="ai-assistants">
+            <h2>Use Your Prompt with These AI Assistants</h2>
+            <div class="ai-links">
+                <a href="https://chat.openai.com/" target="_blank" class="ai-link">
+                    <img src="chatgpt-icon.png" alt="ChatGPT Icon">
+                    <span>ChatGPT</span>
                 </a>
-                <a class="ai-link" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Gemini
+                <a href="https://gemini.google.com/" target="_blank" class="ai-link">
+                    <img src="gemini-icon.png" alt="Gemini Icon">
+                    <span>Gemini (Google)</span>
                 </a>
-                <a class="ai-link" href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">
-                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Copilot
+                <a href="https://copilot.microsoft.com/" target="_blank" class="ai-link">
+                    <img src="copilot-icon.png" alt="Copilot Icon">
+                    <span>Copilot (Microsoft)</span>
                 </a>
-                <a class="ai-link" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">
-                    <span class="ai-icon" aria-hidden="true">&#x1F4AC;</span> Claude
+                <a href="https://claude.ai/" target="_blank" class="ai-link">
+                    <img src="claude-icon.png" alt="Claude Icon">
+                    <span>Claude (Anthropic)</span>
                 </a>
             </div>
-        </div>
+            <p style="text-align: center; margin-top: 15px; font-style: italic; font-size: 0.9em;">(Note: Icons are placeholders and are not generated by this script. They assume local files: chatgpt-icon.png, gemini-icon.png, copilot-icon.png, claude-icon.png)</p>
+        </section>
 
-        <div class="post-links">
-            <p>Share this tool:</p>
-            <a href="#" aria-label="Link to Reddit Post" onclick="return false;">Reddit Post Link (Placeholder)</a>
-            <a href="#" aria-label="Link to Hacker News Post" onclick="return false;">Hacker News Post Link (Placeholder)</a>
-            <a href="#" aria-label="Link to X Post (Twitter)" onclick="return false;">X Post Link (Placeholder)</a>
-        </div>
+        <footer class="footer-links">
+            <a href="#post-1-placeholder">Share on Reddit</a>
+            <a href="#post-2-placeholder">Tweet about this tool</a>
+            <a href="#post-3-placeholder">Discuss on Hacker News</a>
+        </footer>
     </div>
 
     <script>
-        const modelInput = document.getElementById('smartphone-model');
-        const countryInput = document.getElementById('country');
-        const languageInput = document.getElementById('language');
-        const promptTextarea = document.getElementById('generated-prompt');
-        const copyButton = document.getElementById('copy-button');
-        const themeToggle = document.getElementById('theme-toggle');
-        const root = document.documentElement;
+        document.addEventListener('DOMContentLoaded', () => {
+            const smartphoneInput = document.getElementById('smartphone-name');
+            const countryInput = document.getElementById('country');
+            const languageInput = document.getElementById('language');
+            const promptTextarea = document.getElementById('generated-prompt');
+            const copyButton = document.getElementById('copy-button');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
 
-        // --- Data Population (Datalists) ---
-        const popularModels = ['Samsung Galaxy S24', 'Google Pixel 8 Pro', 'Xiaomi 14', 'OnePlus 12', 'Apple iPhone 15'];
-        const countries = ['USA', 'United Kingdom', 'Germany', 'India', 'Brazil', 'Japan', 'South Korea', 'Australia', 'Canada'];
-        const languages = ['English', 'Spanish', 'French', 'German', 'Hindi', 'Japanese', 'Chinese', 'Portuguese', 'Arabic'];
+            // --- Initial Data for Datalists (Must be injected locally) ---
+            const popularSmartphones = ['Google Pixel 8 Pro', 'Samsung Galaxy S23 Ultra', 'Apple iPhone 15 Pro', 'OnePlus 11', 'Xiaomi 13'];
+            const countries = ['United States', 'Germany', 'United Kingdom', 'India', 'Canada', 'Australia', 'Brazil', 'Japan', 'France', 'Ukraine'];
+            const languages = ['English', 'Ukrainian', 'Spanish', 'French', 'German', 'Japanese', 'Hindi'];
 
-        function populateDatalist(id, data) {
-            const datalist = document.getElementById(id);
-            data.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item;
-                datalist.appendChild(option);
+            function populateDatalist(id, data) {
+                const datalist = document.getElementById(id);
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    datalist.appendChild(option);
+                });
+            }
+
+            populateDatalist('smartphone-datalist', popularSmartphones);
+            populateDatalist('country-datalist', countries);
+            populateDatalist('language-datalist', languages);
+
+            // --- Theme Toggle Logic ---
+            function setDarkMode(isDark) {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    themeToggle.textContent = 'Toggle Light Mode';
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    themeToggle.textContent = 'Toggle Dark Mode';
+                }
+            }
+
+            // Check system preference or saved setting
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setDarkMode(true);
+            } else {
+                setDarkMode(false);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isDark = body.classList.contains('dark-mode');
+                setDarkMode(!isDark);
             });
-        }
 
-        populateDatalist('model-list', popularModels);
-        populateDatalist('country-list', countries);
-        populateDatalist('language-list', languages);
+            // --- Prompt Generation Logic ---
+            function generatePrompt() {
+                const model = smartphoneInput.value.trim();
+                const country = countryInput.value.trim();
+                const language = languageInput.value.trim();
 
-        // --- Theme Switching ---
-        function setInitialTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            root.setAttribute('data-theme', savedTheme);
-            themeToggle.textContent = savedTheme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
-        }
+                let corePrompt = "I need a rigorous, data-driven analysis to recommend a smartphone for daily use, focusing on long-term reliability and user experience. The analysis MUST be based *only* on real user reports, discussions, and public sources. YOU MUST NOT invent facts or make assumptions without a verified source. Reddit is a required source, but not the only one. Your assessment must strictly filter out devices known for or suspected of the following: 1) Aggressive adware, spyware, or pre-installed apps without easy, permanent disabling. 2) Forced, non-skippable app installations. 3) Major hardware flaws: chronic overheating, severe performance throttling, battery degradation issues, or component instability. 4) Major software issues: constant freezes, crashes, unstable updates, significant firmware bugs, or noticeable performance degradation over 6-12 months.";
 
-        function toggleTheme() {
-            const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
-            themeToggle.textContent = currentTheme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode';
-        }
+                if (model && country) {
+                    // Scenario: Model AND Country
+                    corePrompt += `\n\n**Specific Request:** Analyze the **${model}** smartphone with a focus on user experiences within the **${country}** region. Specifically check for regional firmware differences, carrier restrictions, and any unique complaints from users in **${country}** regarding the hardware/software issues listed above. Verify the model's time on the market.`;
+                } else if (model) {
+                    // Scenario: Only Model
+                    corePrompt += `\n\n**Specific Request:** Conduct a deep dive analysis specifically on the **${model}** smartphone. Verify its market presence duration. Report on all hardware and software problems, regional firmware differences, and user complaints concerning aggressive advertising, spyware, adware, or compulsory app installs.`;
+                } else if (country) {
+                    // Scenario: Only Country
+                    corePrompt += `\n\n**Specific Request:** Recommend reliable, long-term smartphones for users in the **${country}** region. Factor in local availability, regional firmware specifics, local restrictions, and common user complaints specific to **${country}**.`;
+                } else {
+                    // Scenario: General/Worldwide
+                    corePrompt += "\n\n**General Request:** Recommend a general-purpose, worldwide smartphone that excels in reliability. Include a comparison of at least three models that meet the strict criteria. If any recommended model has been on the market for less than one year, you MUST explicitly warn the user that long-term reliability data is insufficient and suggest a reliable, older alternative.";
+                }
 
-        themeToggle.addEventListener('click', toggleTheme);
-        setInitialTheme();
+                // Add Language requirement (always last)
+                if (language) {
+                    corePrompt += `\n\n**Response Language Requirement:** Provide the *entire* detailed analysis and final recommendation in the **${language}** language.`;
+                } else {
+                    corePrompt += `\n\n**Response Language Requirement:** Provide the *entire* detailed analysis and final recommendation in **English**.`;
+                }
 
-        // --- Prompt Generation Logic ---
-        function updatePrompt() {
-            const model = modelInput.value.trim();
-            const country = countryInput.value.trim();
-            const language = languageInput.value.trim();
-
-            let prompt = "";
-
-            // 1. Language Requirement (Must be first)
-            if (language) {
-                prompt += `**Respond strictly in ${language}.** `;
-            } else {
-                prompt += `**Respond strictly in English.** `;
+                promptTextarea.value = corePrompt;
             }
 
-            // 2. Base & Core Requirements (Always included)
-            prompt += "I need a high-quality analysis and recommendation for a smartphone for everyday use. The analysis must strictly focus on real-world user experiences and public discussions, with **Reddit being a mandatory source** but not the only one. **Do not invent facts, make assumptions, or use unverified information.** Only rely on verified user reports and public sources. ";
-            prompt += "Specifically investigate and report on: **intrusive advertising, spyware, adware, aggressive forced app installations without an opt-out, overheating/throttling, battery stability, long-term component degradation, software freezes/crashes, unstable updates, firmware bugs, and performance degradation over 6+ months of use.** ";
+            // --- Event Listeners for Live Update ---
+            const formElements = [smartphoneInput, countryInput, languageInput];
+            formElements.forEach(el => {
+                el.addEventListener('input', generatePrompt);
+            });
 
+            // Initial prompt generation
+            generatePrompt();
 
-            // 3. Model/Country Specific Logic
-            if (model && country) {
-                // Both provided
-                prompt += `**Target Model & Region:** Analyze the "${model}" specifically in the context of user reports from **${country}**. Investigate regional firmware differences, local carrier restrictions, and complaints specific to the ${country} market. `;
-            } else if (model) {
-                // Model Only
-                prompt += `**Target Model:** Analyze the "${model}" globally. Provide a detailed verification of its long-term hardware and software stability, user complaints about forced apps/ads, its regional firmware differences, and the length of time it has been on the market. `;
-            } else if (country) {
-                // Country Only
-                prompt += `**General Search (Regional Focus):** Provide recommendations for the **${country}** market. Take into account regional model availability, local firmware versions, specific government/carrier restrictions, and user complaints unique to ${country}. `;
-            } else {
-                // General (All Empty)
-                prompt += "Perform a general search for the best global smartphone recommendations that explicitly avoid the listed issues. **Mandatory Requirement:** If any recommended model has been on the market for less than one year, you must explicitly warn the user about the lack of sufficient independent, long-term reviews and suggest an alternative proven model. ";
-            }
+            // --- Copy Button Logic ---
+            copyButton.addEventListener('click', () => {
+                promptTextarea.select();
+                promptTextarea.setSelectionRange(0, 99999); /* For mobile devices */
 
-            // 4. Final Action (Always included)
-            prompt += "Finally, suggest 2-3 alternative models that are known to be free from these critical hardware, software, and privacy issues.";
-
-            promptTextarea.value = prompt.trim();
-        }
-
-        // --- Copy Functionality ---
-        function copyPrompt() {
-            promptTextarea.select();
-            promptTextarea.setSelectionRange(0, 99999); // For mobile devices
-            try {
-                document.execCommand('copy');
-                copyButton.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyButton.textContent = 'Copy Prompt';
-                }, 2000);
-            } catch (err) {
-                // Fallback for older browsers
-                alert('Could not copy text. Please select and copy manually.');
-                console.error('Copy failed: ', err);
-            }
-        }
-
-        // --- Event Listeners ---
-        modelInput.addEventListener('input', updatePrompt);
-        countryInput.addEventListener('input', updatePrompt);
-        languageInput.addEventListener('input', updatePrompt);
-        copyButton.addEventListener('click', copyPrompt);
-
-        // Initial generation
-        updatePrompt();
+                try {
+                    // Use modern Clipboard API if available
+                    navigator.clipboard.writeText(promptTextarea.value).then(() => {
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy Prompt';
+                        }, 2000);
+                    });
+                } catch (err) {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    copyButton.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy Prompt';
+                    }, 2000);
+                }
+            });
+        });
     </script>
-
 </body>
 </html>
