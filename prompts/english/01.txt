@@ -1,4 +1,4 @@
-Create a single self-contained HTML file in English with embedded CSS and JavaScript, without using any CSS frameworks, JavaScript frameworks, libraries, or CDNs. The page title must be **Prompt generator: Find smartphone without annoying features**.
+Create a single self-contained HTML file in English with embedded CSS and JavaScript, without using any CSS frameworks, JavaScript frameworks, libraries, or CDNs. The page title must be Prompt generator: Find smartphone without annoying features.
 
 The purpose of the page is to help the user generate a high-quality text prompt for choosing a smartphone for everyday use without intrusive advertising, spyware, or adware that can aggressively install applications without the ability to stop it, while also taking into account real hardware issues such as overheating, throttling, battery problems, and component stability, as well as software issues including freezes, crashes, unstable updates, firmware bugs, and performance degradation over time, based on real user reviews and discussions.
 

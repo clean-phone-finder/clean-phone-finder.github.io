@@ -3,427 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt generator: Find smartphone without annoying features</title>
-    <meta name="description" content="Generate a high-quality text prompt to find a smartphone free of intrusive ads, spyware, adware, and serious hardware or software defects, based on real user reviews.">
+    <title>Prompt Generator: Find Smartphone Without Annoying Features</title>
+    <meta name="description" content="Generate detailed prompts to find smartphones without intrusive ads, spyware, adware, and with reliable hardware based on real user reviews and discussions.">
     <style>
         :root {
-            --color-text: #333;
-            --color-background: #fff;
-            --color-primary: #007bff;
-            --color-secondary: #6c757d;
-            --color-border: #ccc;
-            --color-input-bg: #f8f9fa;
-            --color-link: #007bff;
-            --color-link-hover: #0056b3;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #dddddd;
+            --button-bg: #007bff;
+            --button-hover: #0056b3;
+            --button-text: #ffffff;
+            --input-bg: #ffffff;
+            --textarea-bg: #f9f9f9;
         }
 
         [data-theme="dark"] {
-            --color-text: #f8f9fa;
-            --color-background: #1e1e1e;
-            --color-primary: #8ab4f8;
-            --color-secondary: #9aa0a6;
-            --color-border: #555;
-            --color-input-bg: #2d2d2d;
-            --color-link: #8ab4f8;
-            --color-link-hover: #a5c8ff;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #444444;
+            --button-bg: #0d6efd;
+            --button-hover: #0b5ed7;
+            --button-text: #ffffff;
+            --input-bg: #2d2d2d;
+            --textarea-bg: #252525;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            margin: 0;
-            padding: 20px;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        h1 {
-            font-size: 1.8em;
-            margin: 0;
+            padding: 20px;
         }
 
         .theme-toggle {
-            cursor: pointer;
-            padding: 8px 12px;
-            border: 1px solid var(--color-border);
-            border-radius: 5px;
-            background-color: var(--color-input-bg);
-            color: var(--color-text);
-            font-weight: bold;
-            transition: background-color 0.3s, border-color 0.3s;
-            user-select: none;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
         }
 
-        .theme-toggle:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-background);
+        .theme-toggle button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle button:hover {
+            background-color: var(--button-hover);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 16px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
-        input[type="text"], select, textarea {
+        input, textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            box-sizing: border-box;
-            background-color: var(--color-input-bg);
-            color: var(--color-text);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
             transition: border-color 0.3s, background-color 0.3s;
         }
 
-        input[type="text"]:focus, select:focus, textarea:focus {
-            border-color: var(--color-primary);
+        input:focus, textarea:focus {
             outline: none;
+            border-color: var(--button-bg);
         }
 
         textarea {
-            min-height: 250px;
+            background-color: var(--textarea-bg);
             resize: vertical;
+            min-height: 300px;
             font-family: monospace;
-            white-space: pre-wrap;
-            tab-size: 4;
-            line-height: 1.4;
         }
 
-        .result-actions {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 15px;
-        }
-
-        .copy-button {
-            padding: 10px 15px;
-            background-color: var(--color-primary);
-            color: var(--color-background);
+        .copy-btn {
+            background-color: var(--button-bg);
+            color: var(--button-text);
             border: none;
-            border-radius: 4px;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
             transition: background-color 0.3s;
         }
 
-        .copy-button:hover {
-            background-color: var(--color-link-hover);
+        .copy-btn:hover {
+            background-color: var(--button-hover);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
         }
 
         .ai-links {
             margin-top: 40px;
-            border-top: 1px solid var(--color-border);
-            padding-top: 20px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
         }
 
         .ai-links h2 {
-            font-size: 1.4em;
-            margin-top: 0;
+            font-size: 20px;
             margin-bottom: 15px;
         }
 
-        .ai-assistants {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .ai-assistant a {
-            text-decoration: none;
-            color: var(--color-text);
+        .ai-link {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 10px;
-            border: 1px solid var(--color-border);
-            border-radius: 5px;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        .ai-assistant a:hover {
-            background-color: var(--color-input-bg);
-            border-color: var(--color-primary);
-        }
-
-        .ai-assistant img {
-            width: 32px;
-            height: 32px;
-            margin-right: 10px;
-        }
-
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid var(--color-border);
-            font-size: 0.9em;
-            text-align: center;
-        }
-
-        footer a {
-            color: var(--color-link);
             text-decoration: none;
-            transition: color 0.3s;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        footer a:hover {
-            color: var(--color-link-hover);
-            text-decoration: underline;
+        .ai-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .discussions {
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .discussions h3 {
-            font-size: 1.2em;
-            margin-top: 0;
+        .ai-link img {
+            width: 48px;
+            height: 48px;
             margin-bottom: 10px;
         }
 
-        .discussions ul {
+        .ai-link span {
+            color: var(--text-primary);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .resources {
+            margin-top: 30px;
+        }
+
+        .resources h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .resources ul {
             list-style: none;
             padding: 0;
         }
 
-        .discussions ul li {
-            margin-bottom: 5px;
+        .resources li {
+            margin-bottom: 10px;
+        }
+
+        .resources a {
+            color: var(--button-bg);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .resources a:hover {
+            color: var(--button-hover);
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--button-bg);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .ai-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
-<body data-theme="light">
+<body>
     <div class="container">
-        <header>
-            <h1>Prompt generator: Find smartphone without annoying features</h1>
-            <button class="theme-toggle" id="themeToggle">Toggle Dark/Light</button>
-        </header>
+        <div class="theme-toggle">
+            <button id="themeToggle">Toggle Dark Mode</button>
+        </div>
 
-        <section class="form-section">
-            <div class="form-group">
-                <label for="smartphoneName">Smartphone Name (Optional):</label>
-                <input type="text" id="smartphoneName" list="popularModels" placeholder="e.g., Google Pixel 8 Pro, Samsung Galaxy S23, Xiaomi 13T">
-                <datalist id="popularModels"></datalist>
+        <h1>Prompt Generator: Find Smartphone Without Annoying Features</h1>
+        <p class="subtitle">Generate a detailed prompt to help AI assistants find smartphones without intrusive ads, spyware, and hardware issues based on real user reviews</p>
+
+        <div class="form-group">
+            <label for="smartphone">Smartphone Model (optional)</label>
+            <input type="text" id="smartphone" list="smartphone-list" placeholder="e.g., Samsung Galaxy S24, iPhone 15 Pro">
+            <datalist id="smartphone-list"></datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country (optional)</label>
+            <input type="text" id="country" list="country-list" placeholder="e.g., United States, Germany, India">
+            <datalist id="country-list"></datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="language">Response Language (optional)</label>
+            <input type="text" id="language" list="language-list" placeholder="e.g., English, Spanish, French">
+            <datalist id="language-list"></datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="prompt">Generated Prompt</label>
+            <textarea id="prompt" readonly></textarea>
+            <button class="copy-btn" id="copyBtn">Copy to Clipboard</button>
+        </div>
+
+        <div class="ai-links">
+            <h2>Use This Prompt With:</h2>
+            <div class="ai-grid">
+                <a href="https://chat.openai.com/" target="_blank" class="ai-link">
+                    <img src="./assets/images/openai-chatgpt-color-icon.svg" alt="ChatGPT">
+                    <span>ChatGPT</span>
+                </a>
+                <a href="https://gemini.google.com/" target="_blank" class="ai-link">
+                    <img src="./assets/images/google-gemini-color-icon.svg" alt="Gemini">
+                    <span>Gemini</span>
+                </a>
+                <a href="https://copilot.microsoft.com/" target="_blank" class="ai-link">
+                    <img src="./assets/images/microsoft-copilot-color-icon.svg" alt="Copilot">
+                    <span>Copilot</span>
+                </a>
+                <a href="https://claude.ai/" target="_blank" class="ai-link">
+                    <img src="./assets/images/anthropic-claude-color-icon.svg" alt="Claude">
+                    <span>Claude</span>
+                </a>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="country">Country (Optional, for regional specifics):</label>
-                <input type="text" id="country" list="countriesList" placeholder="e.g., India, Germany, USA, Indonesia">
-                <datalist id="countriesList"></datalist>
-            </div>
-
-            <div class="form-group">
-                <label for="responseLanguage">Response Language (Optional):</label>
-                <input type="text" id="responseLanguage" list="languagesList" placeholder="e.g., Spanish, French, Japanese">
-                <datalist id="languagesList"></datalist>
-            </div>
-
-            <div class="form-group">
-                <label for="generatedPrompt">Generated Prompt (Read-Only):</label>
-                <div class="result-actions">
-                    <button class="copy-button" id="copyButton">Copy Prompt</button>
-                </div>
-                <textarea id="generatedPrompt" readonly placeholder="Your high-quality AI prompt will appear here..."></textarea>
-            </div>
-        </section>
-
-        <section class="ai-links">
-            <h2>Use this prompt with a free AI Assistant:</h2>
-            <div class="ai-assistants">
-                <div class="ai-assistant">
-                    <a href="https://chat.openai.com/" target="_blank">
-                        <img src="./assets/images/openai-chatgpt-color-icon.svg" alt="ChatGPT Icon">
-                        ChatGPT
-                    </a>
-                </div>
-                <div class="ai-assistant">
-                    <a href="https://gemini.google.com/" target="_blank">
-                        <img src="./assets/images/google-gemini-color-icon.svg" alt="Gemini Icon">
-                        Gemini
-                    </a>
-                </div>
-                <div class="ai-assistant">
-                    <a href="https://copilot.microsoft.com/" target="_blank">
-                        <img src="./assets/images/microsoft-copilot-color-icon.svg" alt="Copilot Icon">
-                        Copilot
-                    </a>
-                </div>
-                <div class="ai-assistant">
-                    <a href="https://www.anthropic.com/claude" target="_blank">
-                        <img src="./assets/images/anthropic-claude-color-icon.svg" alt="Claude Icon">
-                        Claude
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <footer class="discussions">
-            <h3>Discussions and Information</h3>
+        <div class="resources">
+            <h2>Community Discussions</h2>
             <ul>
-                <li><a href="#" target="_blank">Upcoming post: How to find a clean, reliable smartphone in 2024.</a></li>
-                <li><a href="#" target="_blank">Forum thread: The problem with aggressive pre-installed bloatware.</a></li>
-                <li><a href="#" target="_blank">GitHub Repository: Source Code of this Prompt Generator</a></li>
+                <li><a href="#" target="_blank">Reddit Discussion: Prompt Generator for Clean Smartphones</a></li>
+                <li><a href="#" target="_blank">Hacker News: Finding Phones Without Bloatware</a></li>
+                <li><a href="#" target="_blank">XDA Forum: User Experience with Ad-Free Devices</a></li>
             </ul>
-            <p>
-                <a href="#" target="_blank">Source Code on GitHub</a>
-            </p>
-        </footer>
+        </div>
+
+        <div class="footer">
+            <p><a href="https://github.com/yourusername/smartphone-prompt-generator" target="_blank">View Source Code on GitHub</a></p>
+        </div>
     </div>
 
     <script>
-        const settings = {
-            popularModels: [
-                "Google Pixel 8 Pro", "Google Pixel 8", "Samsung Galaxy S23", "Samsung Galaxy S24 Ultra",
-                "Xiaomi 13T", "OnePlus 11", "Apple iPhone 15 Pro", "Sony Xperia 5 V", "Asus Zenfone 10", "Motorola Edge+"
+        const CONFIG = {
+            smartphones: [
+                'Samsung Galaxy S24',
+                'Samsung Galaxy S24 Ultra',
+                'iPhone 15 Pro',
+                'iPhone 15',
+                'Google Pixel 8 Pro',
+                'Google Pixel 8',
+                'OnePlus 12',
+                'Xiaomi 14',
+                'Motorola Edge 40 Pro',
+                'Nothing Phone 2',
+                'ASUS Zenfone 10',
+                'Sony Xperia 1 V'
             ],
             countries: [
-                "USA", "Canada", "UK", "Germany", "France", "Spain", "Italy", "India", "Indonesia", "Brazil",
-                "Mexico", "Russia", "China", "Japan", "South Korea", "Australia", "UAE"
+                'United States',
+                'United Kingdom',
+                'Germany',
+                'France',
+                'Spain',
+                'Italy',
+                'Canada',
+                'Australia',
+                'India',
+                'Japan',
+                'South Korea',
+                'Brazil',
+                'Mexico',
+                'Poland',
+                'Netherlands',
+                'Turkey'
             ],
             languages: [
-                "English", "Spanish", "French", "German", "Japanese", "Korean", "Mandarin Chinese", "Portuguese", "Russian", "Arabic", "Hindi"
+                'English',
+                'Spanish',
+                'French',
+                'German',
+                'Italian',
+                'Portuguese',
+                'Polish',
+                'Turkish',
+                'Japanese',
+                'Korean',
+                'Chinese',
+                'Hindi',
+                'Arabic',
+                'Russian'
             ]
         };
 
-        const elements = {
-            smartphoneName: document.getElementById('smartphoneName'),
-            country: document.getElementById('country'),
-            responseLanguage: document.getElementById('responseLanguage'),
-            generatedPrompt: document.getElementById('generatedPrompt'),
-            popularModelsDatalist: document.getElementById('popularModels'),
-            countriesListDatalist: document.getElementById('countriesList'),
-            languagesListDatalist: document.getElementById('languagesList'),
-            themeToggle: document.getElementById('themeToggle'),
-            body: document.body,
-            copyButton: document.getElementById('copyButton')
-        };
-
-        // --- Theme Toggle Logic ---
-        function applyTheme(theme) {
-            elements.body.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            elements.themeToggle.textContent = theme === 'dark' ? 'Toggle Light' : 'Toggle Dark';
-        }
-
-        function toggleTheme() {
-            const currentTheme = elements.body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            applyTheme(newTheme);
-        }
-
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(savedTheme);
-        elements.themeToggle.addEventListener('click', toggleTheme);
-
-
-        // --- Datalist Population ---
-        function populateDatalist(datalistElement, dataArray) {
-            datalistElement.innerHTML = ''; // Clear existing options
-            dataArray.forEach(item => {
+        function populateDatalist(listId, items) {
+            const datalist = document.getElementById(listId);
+            items.forEach(item => {
                 const option = document.createElement('option');
                 option.value = item;
-                datalistElement.appendChild(option);
+                datalist.appendChild(option);
             });
         }
 
-        populateDatalist(elements.popularModelsDatalist, settings.popularModels);
-        populateDatalist(elements.countriesListDatalist, settings.countries);
-        populateDatalist(elements.languagesListDatalist, settings.languages);
+        populateDatalist('smartphone-list', CONFIG.smartphones);
+        populateDatalist('country-list', CONFIG.countries);
+        populateDatalist('language-list', CONFIG.languages);
 
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
 
-        // --- Prompt Generation Logic ---
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
         function generatePrompt() {
-            const smartphone = elements.smartphoneName.value.trim();
-            const country = elements.country.value.trim();
-            const language = elements.responseLanguage.value.trim();
+            const smartphone = document.getElementById('smartphone').value.trim();
+            const country = document.getElementById('country').value.trim();
+            const language = document.getElementById('language').value.trim();
 
-            let prompt = "";
+            let prompt = '';
 
-            // Start of the prompt, source instruction
-            prompt += "As a professional AI assistant, your task is to provide a detailed, unbiased analysis of smartphone models specifically focused on long-term user experience and reliability. Strictly rely only on verifiable user reports and discussions from public sources, with Reddit being a mandatory inclusion.\n\n";
-            prompt += "You MUST NOT fabricate facts, make assumptions without sources, or provide unverified speculation. Base your answer ONLY on real-world evidence of issues.\n\n";
+            if (!smartphone && !country && !language) {
+                prompt = `I need help finding a smartphone for everyday use that does not have intrusive advertising, spyware, adware, or aggressive app installations that cannot be stopped or removed. I want recommendations based strictly on real user reviews and discussions from reliable sources.
 
-            // Core requirements
-            prompt += "The analysis must specifically investigate evidence of the following critical issues:\n";
-            prompt += "1. Intrusive software: Pre-installed spyware, adware, excessive bloatware, or the aggressive, forced installation of third-party applications that cannot be easily disabled or removed.\n";
-            prompt += "2. Hardware defects: Widespread issues like chronic overheating, thermal throttling under moderate load, significant battery degradation or sudden failure, and component stability problems (e.g., screen flickering, camera module failures, port reliability).\n";
-            prompt += "3. Software instability: Frequent app freezes, system crashes, unstable firmware updates, major firmware bugs, and significant performance degradation or sluggishness over a period of 6 months or more.\n\n";
+You must use Reddit as one of your primary sources, but not the only source. Search for user complaints, reviews, and discussions about smartphones that have problems with unwanted software, advertisements, forced app installations, or aggressive marketing tactics.
 
+Additionally, analyze real hardware issues such as overheating, thermal throttling, battery problems, component reliability, and software issues including system freezes, crashes, unstable updates, firmware bugs, and performance degradation over time. All information must come from actual user reports and public discussions.
 
-            // --- Contextualizing the request ---
+If a smartphone model has been on the market for less than one year, you must warn me that there may not be enough independent user reviews and long-term reliability data available. In such cases, suggest alternative models that have been available longer and have a proven track record without the problems described above.
 
-            if (smartphone && country) {
-                // Scenario: Smartphone and Country specified
-                prompt += `Please focus your comprehensive analysis on the **${smartphone}** model, specifically for the **${country}** region.`;
-                prompt += `Investigate how time on the market has affected its long-term reliability and performance. Crucially, examine regional firmware differences, specific user complaints unique to the **${country}** market, and model availability.\n`;
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information that can be backed by real user reports and public sources. Cite specific examples and sources when discussing problems or recommendations.`;
+            } else if (!smartphone && country && !language) {
+                prompt = `I need help finding a smartphone for everyday use in ${country} that does not have intrusive advertising, spyware, adware, or aggressive app installations. I want recommendations based on real user reviews and discussions from reliable sources, with special attention to regional considerations.
 
-            } else if (smartphone) {
-                // Scenario: Only Smartphone specified
-                prompt += `Conduct a global, in-depth analysis of the **${smartphone}** model.`;
-                prompt += "Investigate its global hardware and software stability, user complaints about intrusive ads and spyware, forced app installations, and the impact of regional firmware differences on its overall user experience, considering its time on the market. If the model is less than one year old, explicitly warn the user that long-term independent reviews are limited and suggest a closely comparable, older model with a proven track record free of the listed issues.\n";
+You must use Reddit as one of your primary sources, but not the only source. Focus on user experiences specifically from ${country} or discussions about phone availability, regional firmware versions, carrier restrictions, and region-specific complaints from users in this country.
 
-            } else if (country) {
-                // Scenario: Only Country specified
-                prompt += `Please recommend a current-generation smartphone model for everyday use that is proven to be free of the listed issues, focusing on availability, regional firmware, restrictions, and specific user complaints within the **${country}** market.`;
-                prompt += "Source your recommendations from user discussions and complaints specifically from or focused on this region, ensuring the suggested model has a strong track record of stability.\n";
+Analyze real hardware issues such as overheating, thermal throttling, battery problems, component reliability, and software issues including system freezes, crashes, unstable updates, firmware bugs, and performance degradation over time. Pay special attention to region-specific problems and differences in firmware behavior in ${country}.
 
-            } else {
-                // Scenario: General/Worldwide (Default)
-                prompt += "Provide a general recommendation for a current-generation smartphone for everyday use that is proven to be free of the listed issues. Source this recommendation from global user discussions and reviews.";
-                prompt += "If any current popular model is less than one year old, explicitly warn the user that long-term independent reviews are limited and suggest a closely comparable, older model with a proven track record free of the listed issues.\n";
+Consider regional availability of smartphone models, local market conditions, carrier limitations, and any country-specific software modifications or restrictions that might affect the user experience in ${country}.
+
+If a smartphone model has been on the market for less than one year, warn me that there may not be enough independent reviews and suggest alternative models with proven track records in ${country}.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information backed by real user reports from ${country} and public sources. Cite specific examples and sources when discussing problems or recommendations.`;
+            } else if (smartphone && !country && !language) {
+                prompt = `I want detailed information about the ${smartphone} based on real user reviews and discussions. I need to know if this smartphone has problems with intrusive advertising, spyware, adware, forced app installations that cannot be stopped, or other unwanted software behavior.
+
+You must use Reddit as one of your primary sources, but not the only source. Search for actual user complaints and experiences with the ${smartphone}. Look for discussions about unwanted software, advertisements, bloatware, or aggressive marketing tactics on this specific model.
+
+Analyze real hardware issues reported by users such as overheating, thermal throttling, battery drain, component failures, screen problems, and other reliability concerns. Also examine software issues including system crashes, freezes, unstable updates, firmware bugs, performance degradation over time, and any problems with the operating system on the ${smartphone}.
+
+Check how long the ${smartphone} has been available on the market. If it has been available for less than one year, warn me that there may not be enough independent long-term reviews and reliability data. In that case, suggest alternative smartphone models that have been available longer and do not have the problems described above.
+
+Examine regional differences in firmware versions for the ${smartphone}. Some manufacturers release different software versions for different regions, and some regions may have more bloatware, advertisements, or restrictions than others. Document any such differences based on user reports.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information that can be verified through real user reports and public discussions. Cite specific sources and examples when discussing problems with the ${smartphone}.`;
+            } else if (smartphone && country && !language) {
+                prompt = `I want detailed information about the ${smartphone} specifically as sold and used in ${country}, based on real user reviews and discussions. I need to know if this smartphone has problems with intrusive advertising, spyware, adware, forced app installations, or other unwanted software behavior in this region.
+
+You must use Reddit as one of your primary sources, but not the only source. Search for actual user complaints and experiences with the ${smartphone} from users in ${country}. Look for region-specific discussions about unwanted software, advertisements, bloatware, carrier modifications, or regional firmware issues.
+
+Analyze real hardware issues reported by users in ${country} such as overheating, thermal throttling, battery problems, component failures, and reliability concerns. Also examine software issues including crashes, freezes, unstable updates, firmware bugs specific to the ${country} version, and performance degradation over time.
+
+Check the regional availability and market presence of the ${smartphone} in ${country}. Examine regional differences in firmware, carrier restrictions, pre-installed applications, and any country-specific modifications that might affect user experience. Document differences between the ${country} version and versions sold in other regions.
+
+If the ${smartphone} has been available in ${country} for less than one year, warn me that there may not be enough independent reviews from this region. Suggest alternative models that have been available longer in ${country} and have proven reliability without the problems described above.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information backed by real user reports from ${country} and public sources. Cite specific examples and sources when discussing problems with the ${smartphone} in ${country}.`;
             }
 
-            // --- Language Instruction (Final Paragraph) ---
-            if (language) {
-                prompt += `\nYour entire response, including all analysis, warnings, and recommendations, MUST be provided in the **${language}** language.`;
-            } else {
-                prompt += "\nRespond entirely in the English language.";
+            if (smartphone && !country && language) {
+                prompt = `I want detailed information about the ${smartphone} based on real user reviews and discussions. I need to know if this smartphone has problems with intrusive advertising, spyware, adware, forced app installations that cannot be stopped, or other unwanted software behavior.
+
+You must use Reddit as one of your primary sources, but not the only source. Search for actual user complaints and experiences with the ${smartphone}. Look for discussions about unwanted software, advertisements, bloatware, or aggressive marketing tactics on this specific model.
+
+Analyze real hardware issues reported by users such as overheating, thermal throttling, battery drain, component failures, screen problems, and other reliability concerns. Also examine software issues including system crashes, freezes, unstable updates, firmware bugs, performance degradation over time, and any problems with the operating system on the ${smartphone}.
+
+Check how long the ${smartphone} has been available on the market. If it has been available for less than one year, warn me that there may not be enough independent long-term reviews and reliability data. In that case, suggest alternative smartphone models that have been available longer and do not have the problems described above.
+
+Examine regional differences in firmware versions for the ${smartphone}. Some manufacturers release different software versions for different regions, and some regions may have more bloatware, advertisements, or restrictions than others. Document any such differences based on user reports.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information that can be verified through real user reports and public discussions. Cite specific sources and examples when discussing problems with the ${smartphone}.
+
+You must provide your entire response in ${language}. All analysis, recommendations, warnings, and explanations must be written in ${language}.`;
+            } else if (!smartphone && country && language) {
+                prompt = `I need help finding a smartphone for everyday use in ${country} that does not have intrusive advertising, spyware, adware, or aggressive app installations. I want recommendations based on real user reviews and discussions from reliable sources, with special attention to regional considerations.
+
+You must use Reddit as one of your primary sources, but not the only source. Focus on user experiences specifically from ${country} or discussions about phone availability, regional firmware versions, carrier restrictions, and region-specific complaints from users in this country.
+
+Analyze real hardware issues such as overheating, thermal throttling, battery problems, component reliability, and software issues including system freezes, crashes, unstable updates, firmware bugs, and performance degradation over time. Pay special attention to region-specific problems and differences in firmware behavior in ${country}.
+
+Consider regional availability of smartphone models, local market conditions, carrier limitations, and any country-specific software modifications or restrictions that might affect the user experience in ${country}.
+
+If a smartphone model has been on the market for less than one year, warn me that there may not be enough independent reviews and suggest alternative models with proven track records in ${country}.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information backed by real user reports from ${country} and public sources. Cite specific examples and sources when discussing problems or recommendations.
+
+You must provide your entire response in ${language}. All analysis, recommendations, warnings, and explanations must be written in ${language}.`;
+            } else if (smartphone && country && language) {
+                prompt = `I want detailed information about the ${smartphone} specifically as sold and used in ${country}, based on real user reviews and discussions. I need to know if this smartphone has problems with intrusive advertising, spyware, adware, forced app installations, or other unwanted software behavior in this region.
+
+You must use Reddit as one of your primary sources, but not the only source. Search for actual user complaints and experiences with the ${smartphone} from users in ${country}. Look for region-specific discussions about unwanted software, advertisements, bloatware, carrier modifications, or regional firmware issues.
+
+Analyze real hardware issues reported by users in ${country} such as overheating, thermal throttling, battery problems, component failures, and reliability concerns. Also examine software issues including crashes, freezes, unstable updates, firmware bugs specific to the ${country} version, and performance degradation over time.
+
+Check the regional availability and market presence of the ${smartphone} in ${country}. Examine regional differences in firmware, carrier restrictions, pre-installed applications, and any country-specific modifications that might affect user experience. Document differences between the ${country} version and versions sold in other regions.
+
+If the ${smartphone} has been available in ${country} for less than one year, warn me that there may not be enough independent reviews from this region. Suggest alternative models that have been available longer in ${country} and have proven reliability without the problems described above.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information backed by real user reports from ${country} and public sources. Cite specific examples and sources when discussing problems with the ${smartphone} in ${country}.
+
+You must provide your entire response in ${language}. All analysis, recommendations, warnings, and explanations must be written in ${language}.`;
+            } else if (!smartphone && !country && language) {
+                prompt = `I need help finding a smartphone for everyday use that does not have intrusive advertising, spyware, adware, or aggressive app installations that cannot be stopped or removed. I want recommendations based strictly on real user reviews and discussions from reliable sources.
+
+You must use Reddit as one of your primary sources, but not the only source. Search for user complaints, reviews, and discussions about smartphones that have problems with unwanted software, advertisements, forced app installations, or aggressive marketing tactics.
+
+Additionally, analyze real hardware issues such as overheating, thermal throttling, battery problems, component reliability, and software issues including system freezes, crashes, unstable updates, firmware bugs, and performance degradation over time. All information must come from actual user reports and public discussions.
+
+If a smartphone model has been on the market for less than one year, you must warn me that there may not be enough independent user reviews and long-term reliability data available. In such cases, suggest alternative models that have been available longer and have a proven track record without the problems described above.
+
+Do not invent facts, make assumptions without sources, or present unverified information. Only provide information that can be backed by real user reports and public sources. Cite specific examples and sources when discussing problems or recommendations.
+
+You must provide your entire response in ${language}. All analysis, recommendations, warnings, and explanations must be written in ${language}.`;
             }
 
-            elements.generatedPrompt.value = prompt;
+            return prompt;
         }
 
-        // --- Event Listeners for Automatic Update ---
-        elements.smartphoneName.addEventListener('input', generatePrompt);
-        elements.country.addEventListener('input', generatePrompt);
-        elements.responseLanguage.addEventListener('input', generatePrompt);
+        function updatePrompt() {
+            const prompt = generatePrompt();
+            document.getElementById('prompt').value = prompt;
+        }
 
-        // Initial generation
-        generatePrompt();
+        document.getElementById('smartphone').addEventListener('input', updatePrompt);
+        document.getElementById('country').addEventListener('input', updatePrompt);
+        document.getElementById('language').addEventListener('input', updatePrompt);
 
-        // --- Copy Button Logic ---
-        elements.copyButton.addEventListener('click', () => {
-            elements.generatedPrompt.select();
-            elements.generatedPrompt.setSelectionRange(0, 99999); // For mobile devices
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const promptTextarea = document.getElementById('prompt');
+            promptTextarea.select();
             document.execCommand('copy');
 
-            // Visual feedback
-            const originalText = elements.copyButton.textContent;
-            elements.copyButton.textContent = 'Copied!';
+            const btn = document.getElementById('copyBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
             setTimeout(() => {
-                elements.copyButton.textContent = originalText;
+                btn.textContent = originalText;
             }, 2000);
         });
+
+        updatePrompt();
     </script>
 </body>
 </html>
