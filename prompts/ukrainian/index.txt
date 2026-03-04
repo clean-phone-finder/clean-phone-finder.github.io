@@ -1,0 +1,65 @@
+Створи HTML-файл англійською мовою — повністю статичну сторінку-заставку яка пропонує користувачу вибір між двома версіями веб-аплікації.
+
+HEAD І SEO
+
+<title>Smartphone Without Bloatware, Ads & Spyware — AI Prompt Generator</title>
+<meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<html lang="en">
+<link rel="canonical" href="">
+
+ТЕХНІЧНІ ВИМОГИ
+
+Файл має бути єдиним самодостатнім HTML-файлом з вбудованими CSS і JavaScript. Забороняється використовувати будь-які CSS-фреймворки, JavaScript-фреймворки, бібліотеки або CDN. Сторінка має бути повністю статичною і responsive. Має підтримуватись світла і темна тема з перемикачем у верхньому правому куті. Стан теми зберігається в localStorage.
+
+ДИЗАЙН-СИСТЕМА
+
+Усі кольори визначаються як CSS custom properties у блоці :root. Заборонено використовувати хардкодні значення кольорів будь-де в CSS, крім блоку :root і [data-theme="dark"]. Перемикання теми через атрибут data-theme="dark" на елементі html.
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border: #e0e0e0;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #ffffff;
+  --radius: 8px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-text: #ffffff;
+}
+
+Типографіка: font-family — var(--font), base font size — 16px, line-height — 1.6. Transitions на color і background-color — 0.2s ease.
+
+СТРУКТУРА СТОРІНКИ
+
+Сторінка має єдиний центрований блок по вертикалі і горизонталі на весь viewport. Вгорі h1: "Find a Smartphone Without Ads, Bloatware & Spyware". Під ним підзаголовок кольором var(--text-secondary): "Generate a research prompt for AI based on real Reddit reviews and user reports". Нижче два блоки вибору версії розташовані поруч на desktop і один під одним на mobile.
+
+БЛОК V2 NEW — основний бажаний варіант
+
+Блок має виражену візуальну перевагу над v1. Фон блоку — var(--accent). Текст всередині — var(--accent-text). Містить мітку "Recommended" або "New" у верхньому куті блоку у вигляді невеликого бейджа. Заголовок блоку: "Version 2". Короткий опис: "Step-by-step wizard. Select smartphone, country and language. Compare multiple models. Instant prompt generation." Кнопка або весь блок є посиланням на /v2. Візуально домінує над блоком v1.
+
+БЛОК V1 OLD — застарілий варіант
+
+Блок має приглушений вигляд. Фон — var(--surface). Рамка — 1px solid var(--border). Текст — var(--text-secondary). Містить мітку "Legacy" у верхньому куті блоку. Заголовок блоку: "Version 1". Короткий опис: "Single page form. Basic prompt generation." Кнопка або весь блок є посиланням на /v1. Виглядає як другорядний вибір — менш яскравий і менш деталізований порівняно з v2.
+
+ЗАГАЛЬНІ ВИМОГИ ДО БЛОКІВ
+
+Обидва блоки мають однаковий розмір. Блоки є інтерактивними посиланнями — cursor pointer, плавний hover-ефект через transition. Клік на будь-яку частину блоку переходить за відповідним посиланням.
+
+ФУТЕР
+
+Внизу сторінки маленький текст кольором var(--text-secondary): "Open source · " з посиланням на GitHub https://github.com/ поруч.
