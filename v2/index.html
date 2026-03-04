@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smartphone Without Bloatware, Ads &amp; Spyware — AI Prompt Generator</title>
+  <meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://clean-phone-finder.github.io/v2/">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM
+    ═══════════════════════════════════════════ */
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --border: #e0e0e0;
+      --text-primary: #111111;
+      --text-secondary: #666666;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-text: #ffffff;
+      --radius: 8px;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text-primary: #f0f0f0;
+      --text-secondary: #999999;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-text: #ffffff;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      transition: background-color 0.2s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROGRESS BAR
+    ═══════════════════════════════════════════ */
+    .progress-bar-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--border);
+      z-index: 200;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME TOGGLE
+    ═══════════════════════════════════════════ */
+    .theme-toggle {
+      position: fixed;
+      top: 0.85rem;
+      right: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      border-radius: 50px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      font-family: var(--font);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      z-index: 300;
+      user-select: none;
+      letter-spacing: 0.02em;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+    }
+
+    /* ═══════════════════════════════════════════
+       SCREEN WRAPPER
+    ═══════════════════════════════════════════ */
+    .screen {
+      display: none;
+      min-height: 100vh;
+      padding: 3.5rem 1.25rem 3rem;
+      max-width: 680px;
+      margin: 0 auto;
+      flex-direction: column;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* ═══════════════════════════════════════════
+       STEP INDICATOR
+    ═══════════════════════════════════════════ */
+    .step-indicator {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+      transition: color 0.2s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+    ═══════════════════════════════════════════ */
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      transition: color 0.2s ease;
+      margin-bottom: 0.4rem;
+    }
+
+    .subheading {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .hint {
+      font-size: 0.825rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       CHIPS
+    ═══════════════════════════════════════════ */
+    .chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    .chip:hover {
+      border-color: var(--text-secondary);
+    }
+
+    .chip.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    .chip.recommended {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chip.recommended.active {
+      background-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    /* Other chip + input */
+    .other-wrap {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .other-input-wrap {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .other-input-wrap.visible {
+      display: flex;
+    }
+
+    .other-input {
+      flex: 1;
+      min-width: 0;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-family: var(--font);
+      outline: none;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .other-input:focus {
+      border-color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: var(--font);
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      line-height: 1.4;
+      user-select: none;
+    }
+
+    .btn:hover {
+      border-color: var(--text-secondary);
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-text);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--text-secondary);
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text-primary);
+      border-color: transparent;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
+      padding-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .spacer { flex: 1; }
+
+    /* ═══════════════════════════════════════════
+       SCREEN 4 — RESULT
+    ═══════════════════════════════════════════ */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.25rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    .summary-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .summary-value {
+      color: var(--text-primary);
+      transition: color 0.2s ease;
+    }
+
+    .prompt-textarea {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-family: monospace;
+      line-height: 1.7;
+      padding: 1rem;
+      resize: none;
+      outline: none;
+      overflow: hidden;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      margin-bottom: 0.75rem;
+    }
+
+    .prompt-textarea:focus {
+      border-color: var(--accent);
+    }
+
+    /* AI assistants */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 0.65rem;
+      margin-top: 1.5rem;
+      transition: color 0.2s ease;
+    }
+
+    .ai-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: var(--font);
+      text-decoration: none;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .ai-link:hover {
+      border-color: var(--text-secondary);
+    }
+
+    .ai-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
+
+    /* SVG icon inline fallback */
+    .ai-icon-svg {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    /* placeholder links */
+    .links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .links-list a {
+      font-size: 0.875rem;
+      color: var(--accent);
+      text-decoration: none;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .links-list a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-line {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .footer-line a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-line a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.4rem; }
+      .nav-row { gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill" style="width:25%"></div>
+  </div>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <span id="themeIcon">☀️</span>
+    <span id="themeLabel">Light</span>
+  </button>
+
+  <!-- ══════════════════════════════════════
+       SCREEN 1 — SMARTPHONE
+  ══════════════════════════════════════ -->
+  <div class="screen active" id="screen1">
+    <div class="step-indicator">Step 1 of 4 · Smartphone</div>
+    <h1>Find a Smartphone Without Ads, Bloatware &amp; Spyware</h1>
+    <p class="subheading">Generate a research prompt for AI based on real Reddit reviews and user reports</p>
+    <p class="hint">Select one to analyze or multiple to compare</p>
+    <div class="chips-wrap" id="chipsPhones"></div>
+    <div class="other-input-wrap" id="otherPhoneWrap">
+      <input
+        class="other-input"
+        id="otherPhoneInput"
+        list="phonesDatalist"
+        type="text"
+        placeholder="Type a smartphone model…"
+        autocomplete="off"
+      >
+      <datalist id="phonesDatalist"></datalist>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-ghost" id="skipPhone">Skip</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" id="nextPhone">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN 2 — COUNTRY
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen2">
+    <div class="step-indicator">Step 2 of 4 · Country</div>
+    <h1>Where Are You Buying?</h1>
+    <p class="subheading">Helps tailor the prompt for regional firmware, availability, and user reports</p>
+    <p class="hint">Select your country or region</p>
+    <div class="chips-wrap" id="chipsCountries"></div>
+    <div class="other-input-wrap" id="otherCountryWrap">
+      <input
+        class="other-input"
+        id="otherCountryInput"
+        list="countriesDatalist"
+        type="text"
+        placeholder="Type a country…"
+        autocomplete="off"
+      >
+      <datalist id="countriesDatalist"></datalist>
+    </div>
+    <div class="nav-row">
+      <button class="btn" id="backCountry">← Back</button>
+      <button class="btn btn-ghost" id="skipCountry">Skip</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" id="nextCountry">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN 3 — LANGUAGE
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen3">
+    <div class="step-indicator">Step 3 of 4 · Language</div>
+    <h1>Response Language</h1>
+    <p class="subheading">The AI assistant will reply in the language you choose</p>
+    <p class="hint">Select preferred language for the AI response</p>
+    <div class="chips-wrap" id="chipsLanguages"></div>
+    <div class="other-input-wrap" id="otherLangWrap">
+      <input
+        class="other-input"
+        id="otherLangInput"
+        list="langsDatalist"
+        type="text"
+        placeholder="Type a language…"
+        autocomplete="off"
+      >
+      <datalist id="langsDatalist"></datalist>
+    </div>
+    <div class="nav-row">
+      <button class="btn" id="backLang">← Back</button>
+      <button class="btn btn-ghost" id="skipLang">Skip</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" id="nextLang">Next →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCREEN 4 — RESULT
+  ══════════════════════════════════════ -->
+  <div class="screen" id="screen4">
+    <div class="step-indicator">Step 4 of 4 · Your Prompt</div>
+    <h1>Your Research Prompt</h1>
+    <p class="subheading">Copy and paste this into any AI assistant</p>
+
+    <div class="summary-grid" id="summaryGrid"></div>
+
+    <textarea class="prompt-textarea" id="promptTextarea" readonly spellcheck="false"></textarea>
+
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+      <button class="btn btn-primary" id="copyBtn">Copy Prompt</button>
+      <button class="btn btn-ghost" id="startOver">Start Over</button>
+    </div>
+
+    <div class="section-label">Open in AI assistant</div>
+    <div class="ai-row" id="aiRow"></div>
+
+    <div class="section-label">Related reading</div>
+    <ul class="links-list" id="linksList"></ul>
+
+    <p class="footer-line">
+      Open source · <a id="githubLink" href="https://github.com/clean-phone-finder/clean-phone-finder.github.io" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </p>
+
+    <div class="nav-row" style="padding-top:1rem;">
+      <button class="btn" id="backResult">← Back</button>
+    </div>
+  </div>
+
+  <script>
+  // ═══════════════════════════════════════════
+  //  CONFIG — EDIT HERE
+  // ═══════════════════════════════════════════
+  const CONFIG = {
+    phones: {
+      chips: [
+        "Samsung Galaxy S25",
+        "Samsung Galaxy S24",
+        "Samsung Galaxy A55",
+        "Google Pixel 9",
+        "Google Pixel 8a",
+        "iPhone 16",
+        "iPhone 15",
+        "OnePlus 13",
+        "OnePlus 12",
+        "Motorola Edge 50",
+        "Nothing Phone 3a",
+        "Sony Xperia 1 VII",
+        "Asus Zenfone 11 Ultra"
+      ],
+      autocomplete: [
+        "Samsung Galaxy S25","Samsung Galaxy S25+","Samsung Galaxy S25 Ultra",
+        "Samsung Galaxy S24","Samsung Galaxy S24+","Samsung Galaxy S24 Ultra","Samsung Galaxy S24 FE",
+        "Samsung Galaxy A55","Samsung Galaxy A35","Samsung Galaxy A25",
+        "Google Pixel 9","Google Pixel 9 Pro","Google Pixel 9 Pro XL",
+        "Google Pixel 8a","Google Pixel 8","Google Pixel 8 Pro",
+        "iPhone 16","iPhone 16 Plus","iPhone 16 Pro","iPhone 16 Pro Max",
+        "iPhone 15","iPhone 15 Plus","iPhone 15 Pro","iPhone 15 Pro Max",
+        "OnePlus 13","OnePlus 13R","OnePlus 12","OnePlus Nord 4",
+        "Motorola Edge 50","Motorola Edge 50 Pro","Motorola Edge 50 Ultra","Motorola Moto G85",
+        "Nothing Phone 3a","Nothing Phone 3a Pro","Nothing Phone 2a",
+        "Sony Xperia 1 VII","Sony Xperia 5 VI","Sony Xperia 10 VI",
+        "Asus Zenfone 11 Ultra","Asus ROG Phone 8",
+        "Xiaomi 14","Xiaomi 14T","Xiaomi 14T Pro","Poco X6 Pro",
+        "Realme GT 6","Oppo Find X8","Vivo X200 Pro"
+      ]
+    },
+    countries: {
+      chips: [
+        "USA","UK","Germany","France","Poland","Ukraine",
+        "India","Japan","Canada","Australia","Brazil"
+      ],
+      autocomplete: [
+        "USA","UK","Germany","France","Poland","Ukraine","India","Japan",
+        "Canada","Australia","Brazil","Austria","Belgium","Czech Republic",
+        "Denmark","Finland","Greece","Hungary","Ireland","Italy","Netherlands",
+        "Norway","Portugal","Romania","Slovakia","Spain","Sweden","Switzerland",
+        "Turkey","Argentina","Chile","Colombia","Mexico","China","Hong Kong",
+        "Indonesia","Malaysia","Pakistan","Philippines","Singapore","South Korea",
+        "Taiwan","Thailand","Vietnam","Egypt","Israel","Nigeria","Saudi Arabia",
+        "South Africa","UAE","New Zealand"
+      ]
+    },
+    languages: {
+      chips: [
+        { label: "English",    code: "en" },
+        { label: "Ukrainian",  code: "uk" },
+        { label: "German",     code: "de" },
+        { label: "French",     code: "fr" },
+        { label: "Spanish",    code: "es" },
+        { label: "Polish",     code: "pl" },
+        { label: "Portuguese", code: "pt" },
+        { label: "Italian",    code: "it" },
+        { label: "Japanese",   code: "ja" },
+        { label: "Korean",     code: "ko" },
+        { label: "Arabic",     code: "ar" },
+        { label: "Turkish",    code: "tr" },
+        { label: "Hindi",      code: "hi" }
+      ],
+      autocomplete: [
+        { label: "English",    code: "en" }, { label: "Ukrainian",  code: "uk" },
+        { label: "German",     code: "de" }, { label: "French",     code: "fr" },
+        { label: "Spanish",    code: "es" }, { label: "Polish",     code: "pl" },
+        { label: "Portuguese", code: "pt" }, { label: "Italian",    code: "it" },
+        { label: "Japanese",   code: "ja" }, { label: "Korean",     code: "ko" },
+        { label: "Arabic",     code: "ar" }, { label: "Turkish",    code: "tr" },
+        { label: "Hindi",      code: "hi" }, { label: "Bengali",    code: "bn" },
+        { label: "Bulgarian",  code: "bg" }, { label: "Croatian",   code: "hr" },
+        { label: "Czech",      code: "cs" }, { label: "Danish",     code: "da" },
+        { label: "Dutch",      code: "nl" }, { label: "Finnish",    code: "fi" },
+        { label: "Greek",      code: "el" }, { label: "Hebrew",     code: "he" },
+        { label: "Hungarian",  code: "hu" }, { label: "Indonesian", code: "id" },
+        { label: "Malay",      code: "ms" }, { label: "Norwegian",  code: "no" },
+        { label: "Persian",    code: "fa" }, { label: "Romanian",   code: "ro" },
+        { label: "Serbian",    code: "sr" }, { label: "Slovak",     code: "sk" },
+        { label: "Slovenian",  code: "sl" }, { label: "Swedish",    code: "sv" },
+        { label: "Thai",       code: "th" }, { label: "Vietnamese", code: "vi" }
+      ]
+    },
+    ai_assistants: [
+      { name: "ChatGPT",  url: "https://chatgpt.com",              icon: "./assets/images/openai-chatgpt-color-icon.svg" },
+      { name: "Gemini",   url: "https://gemini.google.com",        icon: "./assets/images/google-gemini-color-icon.svg" },
+      { name: "Copilot",  url: "https://copilot.microsoft.com",    icon: "./assets/images/microsoft-copilot-color-icon.svg" },
+      { name: "Claude",   url: "https://claude.ai",                icon: "./assets/images/anthropic-claude-color-icon.svg" }
+    ],
+    placeholder_links: [
+      { text: "Discussion: How this prompt generator works (coming soon)", url: "#" },
+      { text: "Post: Finding a clean Android without bloatware (coming soon)", url: "#" }
+    ],
+    github_url: "https://github.com/clean-phone-finder/clean-phone-finder.github.io"
+  };
+
+  // ═══════════════════════════════════════════
+  //  THEME
+  // ═══════════════════════════════════════════
+  (function initTheme() {
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const dark = saved ? saved === 'dark' : prefersDark;
+    if (dark) html.setAttribute('data-theme', 'dark');
+    updateThemeUI(dark);
+  })();
+
+  function updateThemeUI(dark) {
+    document.getElementById('themeIcon').textContent  = dark ? '🌙' : '☀️';
+    document.getElementById('themeLabel').textContent = dark ? 'Dark' : 'Light';
+  }
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) html.removeAttribute('data-theme');
+    else        html.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    updateThemeUI(!isDark);
+  });
+
+  // ═══════════════════════════════════════════
+  //  STATE
+  // ═══════════════════════════════════════════
+  const state = {
+    phones: [],       // array of strings
+    otherPhone: '',   // string
+    country: '',      // string
+    otherCountry: '', // string
+    lang: '',         // label string
+    otherLang: ''     // string
+  };
+
+  // ═══════════════════════════════════════════
+  //  URL PARAMS
+  // ═══════════════════════════════════════════
+  function readParams() {
+    const p = new URLSearchParams(window.location.search);
+    const phoneRaw = p.get('phone') || '';
+    const countryRaw = p.get('country') || '';
+    const langRaw = p.get('lang') || '';
+
+    if (phoneRaw) {
+      const parts = phoneRaw.split(',').map(s => decodeURIComponent(s.trim())).filter(Boolean);
+      const chipSet = new Set(CONFIG.phones.chips);
+      state.phones = parts.filter(v => chipSet.has(v));
+      const other = parts.find(v => !chipSet.has(v));
+      if (other) state.otherPhone = other;
+    }
+    if (countryRaw) {
+      const val = decodeURIComponent(countryRaw);
+      if (CONFIG.countries.chips.includes(val)) state.country = val;
+      else state.otherCountry = val;
+    }
+    if (langRaw) {
+      const val = decodeURIComponent(langRaw);
+      const chipMatch = CONFIG.languages.chips.find(l => l.label === val);
+      if (chipMatch) state.lang = val;
+      else state.otherLang = val;
+    }
+
+    // determine starting screen
+    if (langRaw || (countryRaw && phoneRaw)) return 4;
+    if (countryRaw) return 3;
+    if (phoneRaw) return 2;
+    return 1;
+  }
+
+  function saveParams() {
+    const allPhones = [...state.phones];
+    if (state.otherPhone.trim()) allPhones.push(state.otherPhone.trim());
+
+    const p = new URLSearchParams();
+    if (allPhones.length)    p.set('phone',   allPhones.map(encodeURIComponent).join(','));
+    const country = state.country || state.otherCountry;
+    if (country)             p.set('country', encodeURIComponent(country));
+    const lang = state.lang || state.otherLang;
+    if (lang)                p.set('lang',    encodeURIComponent(lang));
+
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? '?' + qs : window.location.pathname);
+  }
+
+  function clearParams() {
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  // ═══════════════════════════════════════════
+  //  SCREEN NAVIGATION
+  // ═══════════════════════════════════════════
+  let currentScreen = 1;
+
+  const progressMap = { 1: '25%', 2: '50%', 3: '75%', 4: '100%' };
+
+  function showScreen(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen' + n).classList.add('active');
+    document.getElementById('progressFill').style.width = progressMap[n];
+    currentScreen = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ═══════════════════════════════════════════
+  //  CHIP BUILDER
+  // ═══════════════════════════════════════════
+  function buildChips(container, items, getLabel, isActive, toggle, multiSelect) {
+    container.innerHTML = '';
+    items.forEach(item => {
+      const label = getLabel(item);
+      const btn = document.createElement('button');
+      btn.className = 'chip' + (isActive(item) ? ' active' : '');
+      btn.textContent = label;
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        toggle(item, btn, container, multiSelect);
+      });
+      container.appendChild(btn);
+    });
+    // "Other" button
+    const otherBtn = document.createElement('button');
+    otherBtn.className = 'chip';
+    otherBtn.textContent = 'Other';
+    otherBtn.type = 'button';
+    otherBtn.id = container.id + 'OtherChip';
+    container.appendChild(otherBtn);
+    return otherBtn;
+  }
+
+  // ═══════════════════════════════════════════
+  //  SCREEN 1 — PHONES
+  // ═══════════════════════════════════════════
+  function initScreen1() {
+    const container = document.getElementById('chipsPhones');
+    const otherWrap  = document.getElementById('otherPhoneWrap');
+    const otherInput = document.getElementById('otherPhoneInput');
+    const dl = document.getElementById('phonesDatalist');
+
+    // populate datalist
+    dl.innerHTML = '';
+    CONFIG.phones.autocomplete.forEach(v => {
+      const opt = document.createElement('option'); opt.value = v; dl.appendChild(opt);
+    });
+
+    const otherBtn = buildChips(
+      container,
+      CONFIG.phones.chips,
+      v => v,
+      v => state.phones.includes(v),
+      (item, btn) => {
+        if (state.phones.includes(item)) {
+          state.phones = state.phones.filter(x => x !== item);
+          btn.classList.remove('active');
+        } else {
+          state.phones.push(item);
+          btn.classList.add('active');
+        }
+      },
+      true
+    );
+
+    // restore Other
+    if (state.otherPhone) {
+      otherInput.value = state.otherPhone;
+      otherWrap.classList.add('visible');
+      otherBtn.classList.add('active');
+    }
+
+    otherBtn.addEventListener('click', () => {
+      const showing = otherWrap.classList.contains('visible');
+      if (showing) {
+        otherWrap.classList.remove('visible');
+        otherBtn.classList.remove('active');
+        state.otherPhone = '';
+        otherInput.value = '';
+      } else {
+        otherWrap.classList.add('visible');
+        otherBtn.classList.add('active');
+        otherInput.focus();
+      }
+    });
+
+    otherInput.addEventListener('input', () => { state.otherPhone = otherInput.value; });
+
+    document.getElementById('skipPhone').onclick = () => {
+      state.phones = []; state.otherPhone = '';
+      otherInput.value = '';
+      saveParams();
+      showScreen(2); initScreen2();
+    };
+
+    document.getElementById('nextPhone').onclick = () => {
+      saveParams();
+      showScreen(2); initScreen2();
+    };
+  }
+
+  // ═══════════════════════════════════════════
+  //  SCREEN 2 — COUNTRIES
+  // ═══════════════════════════════════════════
+  function initScreen2() {
+    const container = document.getElementById('chipsCountries');
+    const otherWrap  = document.getElementById('otherCountryWrap');
+    const otherInput = document.getElementById('otherCountryInput');
+    const dl = document.getElementById('countriesDatalist');
+
+    dl.innerHTML = '';
+    CONFIG.countries.autocomplete.forEach(v => {
+      const opt = document.createElement('option'); opt.value = v; dl.appendChild(opt);
+    });
+
+    const otherBtn = buildChips(
+      container,
+      CONFIG.countries.chips,
+      v => v,
+      v => state.country === v,
+      (item, btn) => {
+        // single select
+        container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        if (state.country === item) {
+          state.country = '';
+        } else {
+          state.country = item;
+          btn.classList.add('active');
+          // deselect other
+          state.otherCountry = '';
+          otherInput.value = '';
+          otherWrap.classList.remove('visible');
+          otherBtn.classList.remove('active');
+        }
+      },
+      false
+    );
+
+    if (state.otherCountry) {
+      otherInput.value = state.otherCountry;
+      otherWrap.classList.add('visible');
+      otherBtn.classList.add('active');
+    }
+
+    otherBtn.addEventListener('click', () => {
+      const showing = otherWrap.classList.contains('visible');
+      if (showing) {
+        otherWrap.classList.remove('visible');
+        otherBtn.classList.remove('active');
+        state.otherCountry = '';
+        otherInput.value = '';
+      } else {
+        otherWrap.classList.add('visible');
+        otherBtn.classList.add('active');
+        // deselect chips
+        state.country = '';
+        container.querySelectorAll('.chip:not(#chipsCountriesOtherChip)').forEach(c => c.classList.remove('active'));
+        otherInput.focus();
+      }
+    });
+
+    otherInput.addEventListener('input', () => {
+      state.otherCountry = otherInput.value;
+      state.country = '';
+      container.querySelectorAll('.chip:not(#chipsCountriesOtherChip)').forEach(c => c.classList.remove('active'));
+    });
+
+    document.getElementById('backCountry').onclick = () => { showScreen(1); initScreen1(); };
+
+    document.getElementById('skipCountry').onclick = () => {
+      state.country = ''; state.otherCountry = '';
+      otherInput.value = '';
+      saveParams();
+      showScreen(3); initScreen3();
+    };
+
+    document.getElementById('nextCountry').onclick = () => {
+      saveParams();
+      showScreen(3); initScreen3();
+    };
+  }
+
+  // ═══════════════════════════════════════════
+  //  SCREEN 3 — LANGUAGES
+  // ═══════════════════════════════════════════
+  function initScreen3() {
+    const container = document.getElementById('chipsLanguages');
+    const otherWrap  = document.getElementById('otherLangWrap');
+    const otherInput = document.getElementById('otherLangInput');
+    const dl = document.getElementById('langsDatalist');
+
+    dl.innerHTML = '';
+    CONFIG.languages.autocomplete.forEach(l => {
+      const opt = document.createElement('option'); opt.value = l.label; dl.appendChild(opt);
+    });
+
+    // detect browser language
+    const browserLang = (navigator.language || '').split('-')[0].toLowerCase();
+    const browserMatch = CONFIG.languages.chips.find(l => l.code === browserLang);
+
+    const otherBtn = buildChips(
+      container,
+      CONFIG.languages.chips,
+      l => {
+        if (browserMatch && l.code === browserMatch.code) return l.label + ' (your browser language)';
+        return l.label;
+      },
+      l => state.lang === l.label,
+      (item, btn) => {
+        container.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        if (state.lang === item.label) {
+          state.lang = '';
+        } else {
+          state.lang = item.label;
+          btn.classList.add('active');
+          state.otherLang = '';
+          otherInput.value = '';
+          otherWrap.classList.remove('visible');
+          otherBtn.classList.remove('active');
+        }
+      },
+      false
+    );
+
+    // mark recommended
+    if (browserMatch) {
+      const chips = container.querySelectorAll('.chip');
+      CONFIG.languages.chips.forEach((l, i) => {
+        if (l.code === browserMatch.code && chips[i]) chips[i].classList.add('recommended');
+      });
+    }
+
+    if (state.otherLang) {
+      otherInput.value = state.otherLang;
+      otherWrap.classList.add('visible');
+      otherBtn.classList.add('active');
+    }
+
+    otherBtn.addEventListener('click', () => {
+      const showing = otherWrap.classList.contains('visible');
+      if (showing) {
+        otherWrap.classList.remove('visible');
+        otherBtn.classList.remove('active');
+        state.otherLang = '';
+        otherInput.value = '';
+      } else {
+        otherWrap.classList.add('visible');
+        otherBtn.classList.add('active');
+        state.lang = '';
+        container.querySelectorAll('.chip:not(#chipsLanguagesOtherChip)').forEach(c => c.classList.remove('active'));
+        otherInput.focus();
+      }
+    });
+
+    otherInput.addEventListener('input', () => {
+      state.otherLang = otherInput.value;
+      state.lang = '';
+      container.querySelectorAll('.chip:not(#chipsLanguagesOtherChip)').forEach(c => c.classList.remove('active'));
+    });
+
+    document.getElementById('backLang').onclick = () => { showScreen(2); initScreen2(); };
+
+    document.getElementById('skipLang').onclick = () => {
+      state.lang = ''; state.otherLang = '';
+      otherInput.value = '';
+      saveParams();
+      showScreen(4); initScreen4();
+    };
+
+    document.getElementById('nextLang').onclick = () => {
+      saveParams();
+      showScreen(4); initScreen4();
+    };
+  }
+
+  // ═══════════════════════════════════════════
+  //  PROMPT GENERATION
+  // ═══════════════════════════════════════════
+  function generatePrompt(phones, country, lang) {
+    const allPhones = [...phones];
+    const effectiveLang = lang || 'English';
+    const langLine = 'Please respond entirely in ' + effectiveLang + '.';
+
+    const integrity = 'Important: base your entire response exclusively on real user reports, verified community discussions, and documented public sources. Do not invent facts, do not make unsourced assumptions, and do not present unverified information as established truth. If reliable information is unavailable for a particular aspect, state that explicitly rather than speculating.';
+
+    const aspects = [
+      'Hardware reliability: check for overheating during sustained load and during everyday use, CPU and GPU performance throttling after prolonged use, battery degradation patterns reported by long-term users, component instability, and build quality problems.',
+      'Software stability: check for app freezes and crashes, unstable firmware updates, post-update bugs and regressions, performance degradation over time, and problems with RAM management and background process handling.',
+      'Advertising and privacy: check for built-in advertising in the system interface, spyware and adware present in stock firmware, forced installation of apps without user consent, inability to disable or uninstall intrusive system applications, and collection and transmission of user data without explicit consent.',
+      'Proximity sensor: verify whether the device uses a dedicated hardware infrared proximity sensor or relies on software emulation via the accelerometer or ambient light sensor. If software emulation is used, describe real user complaints about incorrect screen behavior during phone calls, such as the screen failing to turn off or activating accidentally.',
+      'Alternatives: suggest specific alternative models that avoid the issues identified above, with brief reasons for each recommendation.'
+    ];
+
+    const regionalNote = country
+      ? 'Pay particular attention to firmware differences between regional variants sold in ' + country + ', including regional feature restrictions, carrier-specific bloatware, and user complaints specific to that market.'
+      : '';
+
+    // ── VARIANT: general (nothing or only language) ──
+    if (allPhones.length === 0 && !country) {
+      let p = '';
+      p += langLine + '\n\n';
+      p += 'I am looking for a smartphone that is free from intrusive advertising, unnecessary pre-installed software, spyware, and avoidable hardware issues. Help me identify which current Android and iOS models are considered the cleanest and most reliable options based on real user experiences.\n\n';
+      p += integrity + '\n\n';
+      p += 'Draw on Reddit discussions, user forums, community reviews, and other documented public sources. Cover the following aspects for the most commonly recommended models:\n\n';
+      aspects.forEach((a, i) => { p += (i + 1) + '. ' + a + '\n\n'; });
+      p += 'If any of the recommended models have been on the market for less than one year, explicitly note that independent long-term reviews are still limited and the long-term behavior of the device is not yet fully established.\n\n';
+      p += 'At the end, provide a ranked summary of the best current options for users who prioritize a clean, ad-free, and reliable smartphone experience.';
+      return p.trimEnd();
+    }
+
+    // ── VARIANT: country only (or country + language) ──
+    if (allPhones.length === 0 && country) {
+      let p = '';
+      p += langLine + '\n\n';
+      p += 'I am looking for a smartphone that is free from intrusive advertising, unnecessary pre-installed software, spyware, and avoidable hardware issues, specifically for use in ' + country + '. Help me identify which current models are the cleanest and most reliable options available in that market, based on real user experiences.\n\n';
+      p += integrity + '\n\n';
+      p += 'Draw on Reddit discussions, user forums, community reviews, and other documented public sources relevant to ' + country + '. Cover the following aspects:\n\n';
+      aspects.forEach((a, i) => { p += (i + 1) + '. ' + a + '\n\n'; });
+      p += '6. ' + (regionalNote || 'Regional specifics: account for model availability, firmware variants, and carrier-specific software differences relevant to ' + country + '.') + '\n\n';
+      p += 'If any of the recommended models have been on the market for less than one year, explicitly note that independent long-term reviews are still limited.\n\n';
+      p += 'At the end, provide a ranked summary of the best current options for users in ' + country + ' who prioritize a clean, ad-free, and reliable smartphone experience.';
+      return p.trimEnd();
+    }
+
+    // ── VARIANT: single phone ──
+    if (allPhones.length === 1) {
+      const phone = allPhones[0];
+      let p = '';
+      p += langLine + '\n\n';
+      p += 'I am considering buying the ' + phone + ' and want to understand its real-world issues based on user experiences, not marketing claims or spec sheets. Conduct a thorough analysis of this specific model.\n\n';
+      p += integrity + '\n\n';
+      p += 'Draw on Reddit discussions, user forums, community reviews, and other documented public sources. Cover the following aspects:\n\n';
+      aspects.forEach((a, i) => { p += (i + 1) + '. ' + a + '\n\n'; });
+      if (regionalNote) p += '6. Regional specifics: ' + regionalNote + '\n\n';
+      p += 'If the ' + phone + ' has been on the market for less than one year, explicitly warn me that independent long-term reviews are still limited and long-term reliability has not yet been established.\n\n';
+      p += 'At the end, provide a clear summary judgment of whether the ' + phone + ' is a trustworthy choice for a user who prioritizes a clean, ad-free, and reliable experience' + (country ? ' in ' + country : '') + ', and suggest the best specific alternatives if it falls short.';
+      return p.trimEnd();
+    }
+
+    // ── VARIANT: multiple phones ──
+    const phoneList = allPhones.join(', ');
+    const lastPhone = allPhones[allPhones.length - 1];
+    const phoneListAnd = allPhones.slice(0, -1).join(', ') + ' and ' + lastPhone;
+
+    let p = '';
+    p += langLine + '\n\n';
+    p += 'I am deciding between the following smartphones: ' + phoneList + '. I want a structured comparative analysis based exclusively on real user experiences and documented public sources, not marketing materials or specifications.\n\n';
+    p += integrity + '\n\n';
+    p += 'Draw on Reddit discussions, user forums, community reviews, and other documented public sources. Structure the comparison by aspect, not by model. For each aspect below, compare ' + phoneListAnd + ' against each other based on what real users have reported:\n\n';
+
+    const multiAspects = [
+      'Hardware reliability across all models: compare overheating behavior under load and during everyday use, CPU and GPU throttling after sustained use, battery degradation patterns, component instability, and build quality issues.',
+      'Software stability across all models: compare the frequency and severity of app freezes and crashes, firmware update stability, post-update bugs, performance degradation over time, and RAM and background process management.',
+      'Advertising and privacy across all models: compare the presence of built-in advertising in system interfaces, spyware and adware in stock firmware, forced app installation, the ability to remove or disable intrusive system apps, and user data collection practices.',
+      'Proximity sensor implementation across all models: for each model, verify whether a dedicated hardware infrared sensor is used or whether the device relies on software emulation. If any model uses software emulation, describe the real user complaints about incorrect behavior during calls.',
+      'Alternatives: if one or more of the compared models have significant drawbacks, suggest specific alternative models that avoid those issues, with brief reasons.'
+    ];
+
+    multiAspects.forEach((a, i) => { p += (i + 1) + '. ' + a + '\n\n'; });
+
+    if (regionalNote) {
+      p += (multiAspects.length + 1) + '. Regional specifics: ' + regionalNote + '\n\n';
+    }
+
+    p += 'If any of the compared models has been on the market for less than one year, explicitly state for that model that independent long-term reviews are still limited and its long-term reliability is not yet fully established.\n\n';
+    p += 'At the end, provide a clear summary recommendation of which model among ' + phoneList + ' is the better overall choice for a user who prioritizes a clean, ad-free, and reliable smartphone experience' + (country ? ' in ' + country : '') + ', and explain the key reasons for that recommendation based on the findings above.';
+    return p.trimEnd();
+  }
+
+  // ═══════════════════════════════════════════
+  //  SCREEN 4 — RESULT
+  // ═══════════════════════════════════════════
+  function initScreen4() {
+    const allPhones = [...state.phones];
+    if (state.otherPhone.trim()) allPhones.push(state.otherPhone.trim());
+    const country = state.country || state.otherCountry || '';
+    const lang    = state.lang    || state.otherLang    || '';
+
+    // summary
+    const grid = document.getElementById('summaryGrid');
+    grid.innerHTML = '';
+    const label = allPhones.length > 1 ? 'Smartphones' : 'Smartphone';
+    const rows = [
+      [label,    allPhones.length ? allPhones.join(', ') : 'Not specified'],
+      ['Country', country || 'Not specified'],
+      ['Language', lang   || 'Not specified']
+    ];
+    rows.forEach(([k, v]) => {
+      const kEl = document.createElement('span'); kEl.className = 'summary-label'; kEl.textContent = k + ':';
+      const vEl = document.createElement('span'); vEl.className = 'summary-value'; vEl.textContent = v;
+      grid.appendChild(kEl); grid.appendChild(vEl);
+    });
+
+    // prompt
+    const prompt = generatePrompt(allPhones, country, lang);
+    const ta = document.getElementById('promptTextarea');
+    ta.value = prompt;
+    ta.style.height = 'auto';
+    ta.style.height = ta.scrollHeight + 'px';
+
+    // copy button
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.textContent = 'Copy Prompt';
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(ta.value).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy Prompt'; }, 2000);
+      }).catch(() => {
+        ta.select();
+        document.execCommand('copy');
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy Prompt'; }, 2000);
+      });
+    };
+
+    // AI assistants
+    const aiRow = document.getElementById('aiRow');
+    aiRow.innerHTML = '';
+    CONFIG.ai_assistants.forEach(ai => {
+      const a = document.createElement('a');
+      a.className = 'ai-link';
+      a.href = ai.url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+
+      const img = document.createElement('img');
+      img.src = ai.icon;
+      img.alt = ai.name;
+      img.className = 'ai-icon';
+      img.onerror = function () {
+        // fallback: replace with initial letter
+        this.style.display = 'none';
+        const fb = document.createElement('span');
+        fb.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;background:var(--border);font-size:0.8rem;font-weight:700;color:var(--text-secondary);flex-shrink:0;';
+        fb.textContent = ai.name[0];
+        a.insertBefore(fb, a.firstChild);
+      };
+
+      const name = document.createElement('span');
+      name.textContent = ai.name;
+      a.appendChild(img);
+      a.appendChild(name);
+      aiRow.appendChild(a);
+    });
+
+    // placeholder links
+    const linksList = document.getElementById('linksList');
+    linksList.innerHTML = '';
+    CONFIG.placeholder_links.forEach(l => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = l.url; a.textContent = l.text;
+      li.appendChild(a); linksList.appendChild(li);
+    });
+
+    // github
+    document.getElementById('githubLink').href = CONFIG.github_url;
+
+    // start over
+    document.getElementById('startOver').onclick = () => {
+      state.phones = []; state.otherPhone = '';
+      state.country = ''; state.otherCountry = '';
+      state.lang = '';    state.otherLang = '';
+      clearParams();
+      showScreen(1); initScreen1();
+    };
+
+    document.getElementById('backResult').onclick = () => { showScreen(3); initScreen3(); };
+  }
+
+  // ═══════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════
+  (function init() {
+    const startScreen = readParams();
+    showScreen(startScreen);
+    if (startScreen === 1) initScreen1();
+    else if (startScreen === 2) { initScreen1(); initScreen2(); }
+    else if (startScreen === 3) { initScreen1(); initScreen2(); initScreen3(); }
+    else { initScreen1(); initScreen2(); initScreen3(); initScreen4(); }
+  })();
+  </script>
+</body>
+</html>
