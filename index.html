@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://clean-phone-finder.github.io/">
+  <title>Smartphone Without Bloatware, Ads &amp; Spyware — AI Prompt Generator</title>
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --border: #e0e0e0;
+      --text-primary: #111111;
+      --text-secondary: #666666;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-text: #ffffff;
+      --radius: 8px;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2a2a2a;
+      --text-primary: #f0f0f0;
+      --text-secondary: #999999;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-text: #ffffff;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      transition: color 0.2s ease, background-color 0.2s ease;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      background-color: var(--bg);
+      transition: background-color 0.2s ease;
+    }
+
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      position: fixed;
+      top: 1.1rem;
+      right: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      border-radius: 50px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-family: var(--font);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      z-index: 100;
+      user-select: none;
+      letter-spacing: 0.02em;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+    }
+
+    .theme-toggle-icon {
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    /* ── Main Content ── */
+    .content {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      transition: color 0.2s ease;
+    }
+
+    .subheadline {
+      text-align: center;
+      font-size: 0.975rem;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+      max-width: 480px;
+    }
+
+    /* ── Version Cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem 1.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.2s ease, border-color 0.2s ease;
+      overflow: hidden;
+    }
+
+    /* V2 — Primary */
+    .card-v2 {
+      background-color: var(--accent);
+      color: var(--accent-text);
+      box-shadow: 0 4px 18px -4px color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .card-v2:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px -6px color-mix(in srgb, var(--accent) 50%, transparent);
+    }
+
+    .card-v2:active {
+      transform: translateY(-1px);
+    }
+
+    /* V1 — Legacy */
+    .card-v1 {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .card-v1:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--text-primary) 12%, transparent);
+      border-color: var(--text-secondary);
+    }
+
+    .card-v1:active {
+      transform: translateY(0);
+    }
+
+    /* ── Badge ── */
+    .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 50px;
+      line-height: 1.4;
+    }
+
+    .card-v2 .badge {
+      background-color: color-mix(in srgb, var(--accent-text) 22%, transparent);
+      color: var(--accent-text);
+      outline: 1px solid color-mix(in srgb, var(--accent-text) 35%, transparent);
+    }
+
+    .card-v1 .badge {
+      background-color: var(--border);
+      color: var(--text-secondary);
+    }
+
+    /* ── Card Typography ── */
+    .card-version {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-top: 0.25rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .card-v2 .card-title,
+    .card-v2 .card-version {
+      color: var(--accent-text);
+    }
+
+    .card-v1 .card-title {
+      color: var(--text-primary);
+      transition: color 0.2s ease;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .card-v2 .card-desc {
+      color: color-mix(in srgb, var(--accent-text) 85%, transparent);
+    }
+
+    .card-v1 .card-desc {
+      color: var(--text-secondary);
+    }
+
+    /* ── Arrow indicator ── */
+    .card-arrow {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-v2 .card-arrow {
+      color: var(--accent-text);
+      opacity: 0.75;
+    }
+
+    .card-v1 .card-arrow {
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      transition: color 0.2s ease;
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 560px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .headline {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <span class="theme-toggle-icon" id="themeIcon">☀️</span>
+    <span id="themeLabel">Light</span>
+  </button>
+
+  <div class="content">
+
+    <h1 class="headline">Find a Smartphone Without Ads,&nbsp;Bloatware&nbsp;&amp;&nbsp;Spyware</h1>
+
+    <p class="subheadline">Generate a research prompt for AI based on real Reddit reviews and user&nbsp;reports</p>
+
+    <div class="cards">
+
+      <!-- V2 — Primary -->
+      <a class="card card-v2" href="/v2">
+        <span class="badge">✦ Recommended</span>
+        <span class="card-version">Version 2</span>
+        <span class="card-title">New Wizard</span>
+        <p class="card-desc">Step-by-step wizard. Select smartphone, country and language. Compare multiple models. Instant prompt generation.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <!-- V1 — Legacy -->
+      <a class="card card-v1" href="/v1">
+        <span class="badge">Legacy</span>
+        <span class="card-version">Version 1</span>
+        <span class="card-title">Classic Form</span>
+        <p class="card-desc">Single page form. Basic prompt generation.</p>
+        <span class="card-arrow">→</span>
+      </a>
+
+    </div>
+
+  </div>
+
+  <footer>
+    Open source ·
+    <a href="https://github.com/clean-phone-finder/clean-phone-finder.github.io" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </footer>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const label = document.getElementById('themeLabel');
+
+      const STORAGE_KEY = 'theme';
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let isDark = saved ? saved === 'dark' : prefersDark;
+
+      function applyTheme(dark) {
+        if (dark) {
+          html.setAttribute('data-theme', 'dark');
+          icon.textContent = '🌙';
+          label.textContent = 'Dark';
+        } else {
+          html.removeAttribute('data-theme');
+          icon.textContent = '☀️';
+          label.textContent = 'Light';
+        }
+      }
+
+      applyTheme(isDark);
+
+      btn.addEventListener('click', function () {
+        isDark = !isDark;
+        applyTheme(isDark);
+        localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light');
+      });
+    })();
+  </script>
+
+</body>
+</html>
