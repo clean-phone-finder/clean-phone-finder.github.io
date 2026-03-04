@@ -1,0 +1,65 @@
+Create an HTML file in English — a fully static landing page that offers the user a choice between two versions of the web application.
+
+HEAD AND SEO
+
+<title>Smartphone Without Bloatware, Ads & Spyware — AI Prompt Generator</title>
+<meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<html lang="en">
+<link rel="canonical" href="">
+
+TECHNICAL REQUIREMENTS
+
+The file must be a single self-contained HTML file with embedded CSS and JavaScript. No CSS frameworks, JavaScript frameworks, libraries, or CDNs are allowed. The page must be fully static and responsive. Light and dark themes must be supported with a toggle in the top right corner. Theme state is saved in localStorage.
+
+DESIGN SYSTEM
+
+All colors must be defined as CSS custom properties on the :root element. Hardcoded color values are forbidden anywhere in CSS except inside the :root and [data-theme="dark"] blocks. Theme switching is handled via the data-theme="dark" attribute on the html element.
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border: #e0e0e0;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #ffffff;
+  --radius: 8px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-text: #ffffff;
+}
+
+Typography: font-family — var(--font), base font size — 16px, line-height — 1.6. Transitions on color and background-color — 0.2s ease.
+
+PAGE STRUCTURE
+
+The page has a single block centered both vertically and horizontally within the full viewport. At the top: h1 "Find a Smartphone Without Ads, Bloatware & Spyware". Below: a subheading in var(--text-secondary): "Generate a research prompt for AI based on real Reddit reviews and user reports". Below that: two version selection blocks displayed side by side on desktop and stacked on mobile.
+
+V2 NEW BLOCK — primary preferred option
+
+This block must have a clear visual advantage over v1. Block background — var(--accent). Text inside — var(--accent-text). Contains a small badge in the top corner with the label "Recommended" or "New". Block heading: "Version 2". Short description: "Step-by-step wizard. Select smartphone, country and language. Compare multiple models. Instant prompt generation." The button or the entire block is a link to /v2. Visually dominates over the v1 block.
+
+V1 OLD BLOCK — legacy option
+
+This block has a subdued appearance. Background — var(--surface). Border — 1px solid var(--border). Text — var(--text-secondary). Contains a small badge in the top corner with the label "Legacy". Block heading: "Version 1". Short description: "Single page form. Basic prompt generation." The button or the entire block is a link to /v1. Appears as a secondary choice — less prominent and less detailed compared to v2.
+
+GENERAL BLOCK REQUIREMENTS
+
+Both blocks are the same size. Blocks are interactive links — cursor pointer, smooth hover effect via transition. Clicking anywhere on a block navigates to the corresponding link.
+
+FOOTER
+
+At the bottom of the page: small text in var(--text-secondary) — "Open source · " followed by a GitHub link https://github.com/

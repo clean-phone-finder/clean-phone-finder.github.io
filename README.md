@@ -4,7 +4,7 @@ A static web tool that generates AI prompts to help you find smartphones without
 
 ## 🌐 Live Demo
 
-Visit: [https://clean-smartphone-prompt-generator.github.io/](https://clean-smartphone-prompt-generator.github.io/)
+Visit: [https://clean-phone-finder.github.io/](https://clean-phone-finder.github.io/)
 
 ## ✨ Features
 

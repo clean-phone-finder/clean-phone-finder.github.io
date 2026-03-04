@@ -1,0 +1,314 @@
+Створи HTML-файл англійською мовою — повністю статичну односторінкову веб-аплікацію з покроковим wizard-інтерфейсом (4 екрани) для генерації текстового промпту вибору смартфона без нав'язливих функцій.
+
+HEAD І SEO
+
+<title>Smartphone Without Bloatware, Ads & Spyware — AI Prompt Generator</title>
+<meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<html lang="en">
+<link rel="canonical" href="">
+
+Без розширених SEO або структурованих даних.
+
+ТЕХНІЧНІ ВИМОГИ
+
+Файл має бути єдиним самодостатнім HTML-файлом з вбудованими CSS і JavaScript. Забороняється використовувати будь-які CSS-фреймворки, JavaScript-фреймворки, бібліотеки або CDN. Сторінка має бути повністю статичною і responsive. SVG-іконки AI-асистентів мають коректно відображатись в обох темах.
+
+ДАНІ — JSON-конфігурація
+
+Усі списки даних мають бути визначені як JSON-об'єкти на початку JavaScript-коду під коментарем CONFIG — EDIT HERE і не дублюватись в жодному іншому місці коду. При зміні цих JSON-об'єктів сторінка має автоматично відображати оновлені дані без змін в іншій частині коду.
+
+Кожен класифікатор (смартфони, країни, мови) має два списки. Перший — chips — містить елементи які відображаються як кнопки-чіпи. Другий — autocomplete — містить повний розширений список усіх відомих значень для цього класифікатора, включно з тими що є в chips. Поле Other для кожного класифікатора використовує autocomplete-список для підказок через HTML datalist. Елементи з chips не видаляються з autocomplete — вони також присутні там, оскільки користувач може ввести їх вручну якщо захоче.
+
+const CONFIG = {
+  phones: {
+    chips: [
+      "Samsung Galaxy S25",
+      "Samsung Galaxy S24",
+      "Samsung Galaxy A55",
+      "Google Pixel 9",
+      "Google Pixel 8a",
+      "iPhone 16",
+      "iPhone 15",
+      "OnePlus 13",
+      "OnePlus 12",
+      "Motorola Edge 50",
+      "Nothing Phone 3a",
+      "Sony Xperia 1 VII",
+      "Asus Zenfone 11 Ultra"
+    ],
+    autocomplete: [
+      "Samsung Galaxy S25",
+      "Samsung Galaxy S25+",
+      "Samsung Galaxy S25 Ultra",
+      "Samsung Galaxy S24",
+      "Samsung Galaxy S24+",
+      "Samsung Galaxy S24 Ultra",
+      "Samsung Galaxy S24 FE",
+      "Samsung Galaxy A55",
+      "Samsung Galaxy A35",
+      "Samsung Galaxy A25",
+      "Google Pixel 9",
+      "Google Pixel 9 Pro",
+      "Google Pixel 9 Pro XL",
+      "Google Pixel 8a",
+      "Google Pixel 8",
+      "Google Pixel 8 Pro",
+      "iPhone 16",
+      "iPhone 16 Plus",
+      "iPhone 16 Pro",
+      "iPhone 16 Pro Max",
+      "iPhone 15",
+      "iPhone 15 Plus",
+      "iPhone 15 Pro",
+      "iPhone 15 Pro Max",
+      "OnePlus 13",
+      "OnePlus 13R",
+      "OnePlus 12",
+      "OnePlus Nord 4",
+      "Motorola Edge 50",
+      "Motorola Edge 50 Pro",
+      "Motorola Edge 50 Ultra",
+      "Motorola Moto G85",
+      "Nothing Phone 3a",
+      "Nothing Phone 3a Pro",
+      "Nothing Phone 2a",
+      "Sony Xperia 1 VII",
+      "Sony Xperia 5 VI",
+      "Sony Xperia 10 VI",
+      "Asus Zenfone 11 Ultra",
+      "Asus ROG Phone 8",
+      "Xiaomi 14",
+      "Xiaomi 14T",
+      "Xiaomi 14T Pro",
+      "Poco X6 Pro",
+      "Realme GT 6",
+      "Oppo Find X8",
+      "Vivo X200 Pro"
+    ]
+  },
+  countries: {
+    chips: [
+      "USA",
+      "UK",
+      "Germany",
+      "France",
+      "Poland",
+      "Ukraine",
+      "India",
+      "Japan",
+      "Canada",
+      "Australia",
+      "Brazil"
+    ],
+    autocomplete: [
+      "USA",
+      "UK",
+      "Germany",
+      "France",
+      "Poland",
+      "Ukraine",
+      "India",
+      "Japan",
+      "Canada",
+      "Australia",
+      "Brazil",
+      "Austria",
+      "Belgium",
+      "Czech Republic",
+      "Denmark",
+      "Finland",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Netherlands",
+      "Norway",
+      "Portugal",
+      "Romania",
+      "Slovakia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Turkey",
+      "Argentina",
+      "Chile",
+      "Colombia",
+      "Mexico",
+      "China",
+      "Hong Kong",
+      "Indonesia",
+      "Malaysia",
+      "Pakistan",
+      "Philippines",
+      "Singapore",
+      "South Korea",
+      "Taiwan",
+      "Thailand",
+      "Vietnam",
+      "Egypt",
+      "Israel",
+      "Nigeria",
+      "Saudi Arabia",
+      "South Africa",
+      "UAE",
+      "New Zealand"
+    ]
+  },
+  languages: {
+    chips: [
+      { label: "English", code: "en" },
+      { label: "Ukrainian", code: "uk" },
+      { label: "German", code: "de" },
+      { label: "French", code: "fr" },
+      { label: "Spanish", code: "es" },
+      { label: "Polish", code: "pl" },
+      { label: "Portuguese", code: "pt" },
+      { label: "Italian", code: "it" },
+      { label: "Japanese", code: "ja" },
+      { label: "Korean", code: "ko" },
+      { label: "Arabic", code: "ar" },
+      { label: "Turkish", code: "tr" },
+      { label: "Hindi", code: "hi" }
+    ],
+    autocomplete: [
+      { label: "English", code: "en" },
+      { label: "Ukrainian", code: "uk" },
+      { label: "German", code: "de" },
+      { label: "French", code: "fr" },
+      { label: "Spanish", code: "es" },
+      { label: "Polish", code: "pl" },
+      { label: "Portuguese", code: "pt" },
+      { label: "Italian", code: "it" },
+      { label: "Japanese", code: "ja" },
+      { label: "Korean", code: "ko" },
+      { label: "Arabic", code: "ar" },
+      { label: "Turkish", code: "tr" },
+      { label: "Hindi", code: "hi" },
+      { label: "Bengali", code: "bn" },
+      { label: "Bulgarian", code: "bg" },
+      { label: "Croatian", code: "hr" },
+      { label: "Czech", code: "cs" },
+      { label: "Danish", code: "da" },
+      { label: "Dutch", code: "nl" },
+      { label: "Finnish", code: "fi" },
+      { label: "Greek", code: "el" },
+      { label: "Hebrew", code: "he" },
+      { label: "Hungarian", code: "hu" },
+      { label: "Indonesian", code: "id" },
+      { label: "Malay", code: "ms" },
+      { label: "Norwegian", code: "no" },
+      { label: "Persian", code: "fa" },
+      { label: "Romanian", code: "ro" },
+      { label: "Serbian", code: "sr" },
+      { label: "Slovak", code: "sk" },
+      { label: "Slovenian", code: "sl" },
+      { label: "Swedish", code: "sv" },
+      { label: "Thai", code: "th" },
+      { label: "Vietnamese", code: "vi" }
+    ]
+  },
+  ai_assistants: [
+    { name: "ChatGPT", url: "https://chatgpt.com", icon: "./assets/images/openai-chatgpt-color-icon.svg" },
+    { name: "Gemini", url: "https://gemini.google.com", icon: "./assets/images/google-gemini-color-icon.svg" },
+    { name: "Copilot", url: "https://copilot.microsoft.com", icon: "./assets/images/microsoft-copilot-color-icon.svg" },
+    { name: "Claude", url: "https://claude.ai", icon: "./assets/images/anthropic-claude-color-icon.svg" }
+  ],
+  placeholder_links: [
+    { text: "Discussion: How this prompt generator works (coming soon)", url: "#" },
+    { text: "Post: Finding a clean Android without bloatware (coming soon)", url: "#" }
+  ],
+  github_url: "https://github.com/"
+};
+
+QUERY PARAMS І СТАН
+
+Стан усіх вибраних значень зберігається в query params URL. Параметр phone може містити одне або кілька значень через кому — наприклад phone=iPhone+16,Pixel+9. Параметри country і lang містять одне значення або відсутні. Всі параметри необов'язкові. При перезавантаженні сторінки стан відновлюється з query params і відображається відповідний екран. Якщо query params відсутні — показується екран 1.
+
+ДИЗАЙН-СИСТЕМА
+
+Усі кольори, відступи і типографіка визначаються як CSS custom properties у блоці :root. Заборонено використовувати хардкодні значення кольорів будь-де в CSS, крім блоку :root і [data-theme="dark"]. Перемикання теми здійснюється через атрибут data-theme="dark" на елементі <html>. Стан теми зберігається в localStorage. Перемикач теми розташований у верхньому правому куті на кожному екрані.
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border: #e0e0e0;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #ffffff;
+  --radius: 8px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-text: #ffffff;
+}
+
+Типографіка: font-family — var(--font), base font size — 16px, line-height — 1.6. h1 — 1.75rem, font-weight 600. Підзаголовок — 1rem, font-weight 400, колір var(--text-secondary). Кнопки — 0.875rem, font-weight 500. Textarea — 0.9rem, line-height 1.7, font-family monospace.
+
+Кнопки-чіпи використовують var(--surface) як фон, var(--border) як рамку, var(--text-primary) як колір тексту. Активний чіп використовує var(--accent) як фон і var(--accent-text) як колір тексту. Усі інтерактивні елементи використовують var(--radius) для border-radius. Transitions на color і background-color — 0.2s ease. Жодних box-shadow, крім тонкої рамки 1px на поверхнях через var(--border).
+
+Прогрес-бар зверху кожного екрана висотою 2px, колір var(--accent), заповнення відповідно до поточного кроку: екран 1 — 25%, екран 2 — 50%, екран 3 — 75%, екран 4 — 100%.
+
+ЕКРАН 1 — ВИБІР СМАРТФОНА
+
+Вгорі h1: "Find a Smartphone Without Ads, Bloatware & Spyware". Під ним підзаголовок: "Generate a research prompt for AI based on real Reddit reviews and user reports". Індикатор кроку: "STEP 1 OF 4 · SMARTPHONE". Підказка під індикатором: "Select one to analyze or multiple to compare".
+
+Кнопки-чіпи генеруються з CONFIG.phones.chips. Підтримується мульти-селект — можна обрати будь-яку кількість чіпів одночасно. Повторне натискання на активний чіп знімає виділення. Остання кнопка — "Other". При натисканні "Other" під кнопками з'являється текстове поле з HTML datalist, підказки для якого генеруються з CONFIG.phones.autocomplete. Значення введене в поле Other додається до списку обраних моделей і не замінює вибір чіпів — тобто можна одночасно обрати чіпи іввести модель через Other. Кнопка "Skip" пропускає крок без вибору. Кнопка "Next" переходить на екран 2 і зберігає всі обрані значення у query param phone через кому.
+
+ЕКРАН 2 — ВИБІР КРАЇНИ
+
+Індикатор кроку: "STEP 2 OF 4 · COUNTRY". Кнопки-чіпи генеруються з CONFIG.countries.chips. Одиночний селект — можна обрати лише одну країну. Остання кнопка — "Other" з текстовим полем і HTML datalist з підказками з CONFIG.countries.autocomplete. Кнопка "Skip". Кнопка "Back" повертає на екран 1 зі збереженням стану. Кнопка "Next" переходить на екран 3 і зберігає вибір у query param country.
+
+ЕКРАН 3 — ВИБІР МОВИ ВІДПОВІДІ
+
+Індикатор кроку: "STEP 3 OF 4 · LANGUAGE". Кнопки-чіпи генеруються з CONFIG.languages.chips — відображається поле label. Одиночний селект. При завантаженні екрана визначається мова браузера через navigator.language і зіставляється з полем code у CONFIG.languages.chips. Якщо збігається — ця кнопка отримує мітку "(your browser language)" і підсвічується як рекомендована. Якщо не збігається — жодна кнопка не підсвічується. Остання кнопка — "Other" з текстовим полем і HTML datalist з підказками з CONFIG.languages.autocomplete — відображаються значення поля label. Кнопка "Skip". Кнопка "Back" повертає на екран 2. Кнопка "Next" переходить на екран 4 і зберігає у query param lang значення поля label обраної мови.
+
+ЕКРАН 4 — РЕЗУЛЬТАТ
+
+Індикатор кроку: "STEP 4 OF 4 · YOUR PROMPT". Summary обраних параметрів: Smartphone (або Smartphones якщо обрано більше одного), Country, Language. Якщо параметр не обраний — відображається "Not specified". Якщо обрано кілька смартфонів — відображаються всі через кому. Далі textarea у режимі read-only зі згенерованим промптом. Textarea автоматично підлаштовує висоту під вміст. Кнопка "Copy Prompt" копіює вміст textarea в буфер обміну і тимчасово змінює текст на "Copied!" на 2 секунди. Кнопка "Start Over" скидає всі query params і повертає на екран 1. Кнопка "Back" повертає на екран 3. Нижче textarea — секція AI-асистентів, згенерована з CONFIG.ai_assistants. Нижче — секція посилань, згенерована з CONFIG.placeholder_links. Внизу — посилання на GitHub з CONFIG.github_url.
+
+AI-АСИСТЕНТИ
+
+Посилання з img-іконками і назвами генеруються з CONFIG.ai_assistants. Іконки відображаються розміром 32x32px. SVG-іконки мають коректно відображатись в обох темах. Посилання відкриваються у новій вкладці.
+
+ЛОГІКА ГЕНЕРАЦІЇ ПРОМПТУ
+
+Згенерований промпт має бути суцільним текстом без emoji, без HTML, без Markdown і без будь-якого спеціального форматування. Промпт розбивається на логічні абзаци, розділені порожнім рядком, для зручного читання людиною. У кожному варіанті промпту має бути жорстка заборона для AI вигадувати факти, робити припущення без джерел або подавати неперевірену інформацію. Промпт має вимагати опори лише на реальні користувацькі звіти, обговорення і публічні джерела. Reddit є обов'язковим, але не єдиним джерелом. Якщо мова вказана — промпт містить явну вимогу надати відповідь цією мовою. Якщо мова не вказана — відповідь англійською.
+
+Промпт завжди має включати перевірку таких аспектів:
+
+Hardware-проблеми: перегрівання під навантаженням і у звичайному використанні, throttling процесора і GPU після тривалого навантаження, деградація акумулятора, нестабільність компонентів, проблеми з якістю збірки.
+
+Software-проблеми: зависання і краші застосунків, нестабільні оновлення прошивки, баги після оновлень, деградація продуктивності з часом, проблеми з оперативною пам'яттю і управлінням фоновими процесами.
+
+Реклама і приватність: наявність вбудованої реклами в системному інтерфейсі, spyware і adware у стоковій прошивці, примусове встановлення застосунків без згоди користувача, неможливість відключити або видалити нав'язливі системні застосунки, збір і передача даних користувача без явної згоди.
+
+Сенсори і апаратні компроміси: наявність віртуального (програмного) датчика наближення замість апаратного інфрачервоного сенсора. Промпт має явно вимагати перевірки, чи використовує пристрій програмну емуляцію датчика наближення через акселерометр або датчик освітленості замість виділеного апаратного IR-сенсора, і якщо так — описати реальні скарги користувачів на некоректну поведінку екрана під час дзвінків.
+
+Регіональні відмінності: відмінності прошивок для різних ринків, регіональні обмеження функцій, наявність додаткового bloatware в регіональних версіях.
+
+Час присутності на ринку: якщо модель менше одного року на ринку — промпт має явно вимагати попередити користувача про недостатню кількість незалежних довгострокових відгуків.
+
+Альтернативи: промпт має вимагати запропонувати конкретні альтернативні моделі без описаних проблем.
+
+Варіанти промпту залежно від заповнених полів:
+
+Якщо не вказано нічого (або лише мова): загальний промпт для worldwide вибору смартфона на основі реальних обговорень.
+
+Якщо вказано лише країну (або країна + мова): промпт враховує регіональні особливості, доступність моделей, регіональні прошивки, обмеження та специфічні скарги користувачів з цього регіону.
+
+Якщо вказано одну модель (або одна модель + країна, або одна модель + мова, або всі три поля з однією моделлю): промпт фокусується на аналізі цієї конкретної моделі з перевіркою всіх аспектів зі списку вище, з урахуванням країни якщо вказана.
+
+Якщо вказано кілька моделей: промпт вимагає порівняльного аналізу всіх вказаних моделей. Для кожного аспекту зі списку вище AI має порівняти моделі між собою на основі реальних користувацьких звітів і публічних обговорень, а не абстрактних характеристик. Порівняння має бути структуроване по аспектах, а не по моделях окремо — тобто спочатку розглядається hardware по всіх моделях, потім software по всіх моделях, і так далі. В кінці має бути підсумкова рекомендація яка модель є кращим вибором і чому, з урахуванням країни якщо вказана. Якщо для деяких моделей недостатньо незалежних відгуків — AI має явно про це попередити.

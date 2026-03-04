@@ -1,0 +1,314 @@
+Create an HTML file in English — a fully static single-page web application with a step-by-step wizard interface (4 screens) for generating a text prompt to help choose a smartphone without annoying features.
+
+HEAD AND SEO
+
+<title>Smartphone Without Bloatware, Ads & Spyware — AI Prompt Generator</title>
+<meta name="description" content="Find smartphones without ads, bloatware, spyware, and overheating. Generate an AI research prompt based on real Reddit reviews and user reports.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<html lang="en">
+<link rel="canonical" href="">
+
+No extended SEO or structured data.
+
+TECHNICAL REQUIREMENTS
+
+The file must be a single self-contained HTML file with embedded CSS and JavaScript. No CSS frameworks, JavaScript frameworks, libraries, or CDNs are allowed. The page must be fully static and responsive. SVG icons for AI assistants must render correctly in both themes.
+
+DATA — JSON CONFIGURATION
+
+All data lists must be defined as JSON objects at the top of the JavaScript code under a comment CONFIG — EDIT HERE and must not be duplicated anywhere else in the code. When these JSON objects are changed, the page must automatically reflect the updated data without any changes to the rest of the code.
+
+Each classifier (phones, countries, languages) has two lists. The first — chips — contains items displayed as chip buttons. The second — autocomplete — contains the full extended list of all known values for that classifier, including those already in chips. The Other field for each classifier uses the autocomplete list for suggestions via HTML datalist. Items from chips are not removed from autocomplete — they are also present there, since the user may want to type them manually.
+
+const CONFIG = {
+  phones: {
+    chips: [
+      "Samsung Galaxy S25",
+      "Samsung Galaxy S24",
+      "Samsung Galaxy A55",
+      "Google Pixel 9",
+      "Google Pixel 8a",
+      "iPhone 16",
+      "iPhone 15",
+      "OnePlus 13",
+      "OnePlus 12",
+      "Motorola Edge 50",
+      "Nothing Phone 3a",
+      "Sony Xperia 1 VII",
+      "Asus Zenfone 11 Ultra"
+    ],
+    autocomplete: [
+      "Samsung Galaxy S25",
+      "Samsung Galaxy S25+",
+      "Samsung Galaxy S25 Ultra",
+      "Samsung Galaxy S24",
+      "Samsung Galaxy S24+",
+      "Samsung Galaxy S24 Ultra",
+      "Samsung Galaxy S24 FE",
+      "Samsung Galaxy A55",
+      "Samsung Galaxy A35",
+      "Samsung Galaxy A25",
+      "Google Pixel 9",
+      "Google Pixel 9 Pro",
+      "Google Pixel 9 Pro XL",
+      "Google Pixel 8a",
+      "Google Pixel 8",
+      "Google Pixel 8 Pro",
+      "iPhone 16",
+      "iPhone 16 Plus",
+      "iPhone 16 Pro",
+      "iPhone 16 Pro Max",
+      "iPhone 15",
+      "iPhone 15 Plus",
+      "iPhone 15 Pro",
+      "iPhone 15 Pro Max",
+      "OnePlus 13",
+      "OnePlus 13R",
+      "OnePlus 12",
+      "OnePlus Nord 4",
+      "Motorola Edge 50",
+      "Motorola Edge 50 Pro",
+      "Motorola Edge 50 Ultra",
+      "Motorola Moto G85",
+      "Nothing Phone 3a",
+      "Nothing Phone 3a Pro",
+      "Nothing Phone 2a",
+      "Sony Xperia 1 VII",
+      "Sony Xperia 5 VI",
+      "Sony Xperia 10 VI",
+      "Asus Zenfone 11 Ultra",
+      "Asus ROG Phone 8",
+      "Xiaomi 14",
+      "Xiaomi 14T",
+      "Xiaomi 14T Pro",
+      "Poco X6 Pro",
+      "Realme GT 6",
+      "Oppo Find X8",
+      "Vivo X200 Pro"
+    ]
+  },
+  countries: {
+    chips: [
+      "USA",
+      "UK",
+      "Germany",
+      "France",
+      "Poland",
+      "Ukraine",
+      "India",
+      "Japan",
+      "Canada",
+      "Australia",
+      "Brazil"
+    ],
+    autocomplete: [
+      "USA",
+      "UK",
+      "Germany",
+      "France",
+      "Poland",
+      "Ukraine",
+      "India",
+      "Japan",
+      "Canada",
+      "Australia",
+      "Brazil",
+      "Austria",
+      "Belgium",
+      "Czech Republic",
+      "Denmark",
+      "Finland",
+      "Greece",
+      "Hungary",
+      "Ireland",
+      "Italy",
+      "Netherlands",
+      "Norway",
+      "Portugal",
+      "Romania",
+      "Slovakia",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Turkey",
+      "Argentina",
+      "Chile",
+      "Colombia",
+      "Mexico",
+      "China",
+      "Hong Kong",
+      "Indonesia",
+      "Malaysia",
+      "Pakistan",
+      "Philippines",
+      "Singapore",
+      "South Korea",
+      "Taiwan",
+      "Thailand",
+      "Vietnam",
+      "Egypt",
+      "Israel",
+      "Nigeria",
+      "Saudi Arabia",
+      "South Africa",
+      "UAE",
+      "New Zealand"
+    ]
+  },
+  languages: {
+    chips: [
+      { label: "English", code: "en" },
+      { label: "Ukrainian", code: "uk" },
+      { label: "German", code: "de" },
+      { label: "French", code: "fr" },
+      { label: "Spanish", code: "es" },
+      { label: "Polish", code: "pl" },
+      { label: "Portuguese", code: "pt" },
+      { label: "Italian", code: "it" },
+      { label: "Japanese", code: "ja" },
+      { label: "Korean", code: "ko" },
+      { label: "Arabic", code: "ar" },
+      { label: "Turkish", code: "tr" },
+      { label: "Hindi", code: "hi" }
+    ],
+    autocomplete: [
+      { label: "English", code: "en" },
+      { label: "Ukrainian", code: "uk" },
+      { label: "German", code: "de" },
+      { label: "French", code: "fr" },
+      { label: "Spanish", code: "es" },
+      { label: "Polish", code: "pl" },
+      { label: "Portuguese", code: "pt" },
+      { label: "Italian", code: "it" },
+      { label: "Japanese", code: "ja" },
+      { label: "Korean", code: "ko" },
+      { label: "Arabic", code: "ar" },
+      { label: "Turkish", code: "tr" },
+      { label: "Hindi", code: "hi" },
+      { label: "Bengali", code: "bn" },
+      { label: "Bulgarian", code: "bg" },
+      { label: "Croatian", code: "hr" },
+      { label: "Czech", code: "cs" },
+      { label: "Danish", code: "da" },
+      { label: "Dutch", code: "nl" },
+      { label: "Finnish", code: "fi" },
+      { label: "Greek", code: "el" },
+      { label: "Hebrew", code: "he" },
+      { label: "Hungarian", code: "hu" },
+      { label: "Indonesian", code: "id" },
+      { label: "Malay", code: "ms" },
+      { label: "Norwegian", code: "no" },
+      { label: "Persian", code: "fa" },
+      { label: "Romanian", code: "ro" },
+      { label: "Serbian", code: "sr" },
+      { label: "Slovak", code: "sk" },
+      { label: "Slovenian", code: "sl" },
+      { label: "Swedish", code: "sv" },
+      { label: "Thai", code: "th" },
+      { label: "Vietnamese", code: "vi" }
+    ]
+  },
+  ai_assistants: [
+    { name: "ChatGPT", url: "https://chatgpt.com", icon: "./assets/images/openai-chatgpt-color-icon.svg" },
+    { name: "Gemini", url: "https://gemini.google.com", icon: "./assets/images/google-gemini-color-icon.svg" },
+    { name: "Copilot", url: "https://copilot.microsoft.com", icon: "./assets/images/microsoft-copilot-color-icon.svg" },
+    { name: "Claude", url: "https://claude.ai", icon: "./assets/images/anthropic-claude-color-icon.svg" }
+  ],
+  placeholder_links: [
+    { text: "Discussion: How this prompt generator works (coming soon)", url: "#" },
+    { text: "Post: Finding a clean Android without bloatware (coming soon)", url: "#" }
+  ],
+  github_url: "https://github.com/"
+};
+
+QUERY PARAMS AND STATE
+
+The state of all selected values is stored in URL query params. The phone param may contain one or multiple values separated by commas — for example phone=iPhone+16,Pixel+9. The country and lang params contain a single value or are absent. All parameters are optional. When the page is reloaded, state is restored from query params and the corresponding screen is shown. If no query params are present, screen 1 is shown.
+
+DESIGN SYSTEM
+
+All colors, spacing, and typography values must be defined as CSS custom properties on the :root element. Hardcoded color values are forbidden anywhere in CSS except inside the :root and [data-theme="dark"] blocks. Theme switching is handled via the data-theme="dark" attribute on the <html> element. Theme state is saved in localStorage. The theme toggle is positioned in the top right corner on every screen.
+
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border: #e0e0e0;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #ffffff;
+  --radius: 8px;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #999999;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-text: #ffffff;
+}
+
+Typography: font-family — var(--font), base font size — 16px, line-height — 1.6. h1 — 1.75rem, font-weight 600. Subheading — 1rem, font-weight 400, color var(--text-secondary). Buttons — 0.875rem, font-weight 500. Textarea — 0.9rem, line-height 1.7, font-family monospace.
+
+Chip buttons use var(--surface) as background, var(--border) as border, var(--text-primary) as text color. The active chip uses var(--accent) as background and var(--accent-text) as text color. All interactive elements use var(--radius) for border-radius. Transitions on color and background-color — 0.2s ease. No box-shadows except a subtle 1px border on surfaces using var(--border).
+
+A progress bar at the top of each screen is 2px tall, colored var(--accent), filled according to the current step: screen 1 — 25%, screen 2 — 50%, screen 3 — 75%, screen 4 — 100%.
+
+SCREEN 1 — SMARTPHONE SELECTION
+
+At the top: h1 "Find a Smartphone Without Ads, Bloatware & Spyware". Below: subheading "Generate a research prompt for AI based on real Reddit reviews and user reports". Step indicator: "STEP 1 OF 4 · SMARTPHONE". Hint below the indicator: "Select one to analyze or multiple to compare".
+
+Chip buttons are generated from CONFIG.phones.chips. Multi-select is supported — any number of chips can be selected simultaneously. Clicking an active chip deselects it. The last button is "Other". Clicking "Other" reveals a text input with an HTML datalist populated from CONFIG.phones.autocomplete. The value entered in the Other field is added to the list of selected models and does not replace chip selections — chips and the Other field can be active simultaneously. A "Skip" button clears the selection. The "Next" button moves to screen 2 and saves all selected values to query param phone separated by commas.
+
+SCREEN 2 — COUNTRY SELECTION
+
+Step indicator: "STEP 2 OF 4 · COUNTRY". Chip buttons are generated from CONFIG.countries.chips. Single-select — only one country can be selected. The last button is "Other" with a text input and HTML datalist populated from CONFIG.countries.autocomplete. A "Skip" button. A "Back" button returns to screen 1 preserving state. The "Next" button moves to screen 3 and saves the selection to query param country.
+
+SCREEN 3 — RESPONSE LANGUAGE SELECTION
+
+Step indicator: "STEP 3 OF 4 · LANGUAGE". Chip buttons are generated from CONFIG.languages.chips using the label field for display. Single-select. When the screen loads, the browser language is detected via navigator.language and matched against the code field in CONFIG.languages.chips. If a match is found — that button is highlighted as recommended with the label "(your browser language)". If no match is found — no button is highlighted. The last button is "Other" with a text input and HTML datalist populated from CONFIG.languages.autocomplete showing label values. A "Skip" button. A "Back" button returns to screen 2. The "Next" button moves to screen 4 and saves the label value of the selected language to query param lang.
+
+SCREEN 4 — RESULT
+
+Step indicator: "STEP 4 OF 4 · YOUR PROMPT". Summary of selected parameters: Smartphone (or Smartphones if more than one is selected), Country, Language. If a parameter was not selected — display "Not specified". If multiple smartphones are selected — display all of them separated by commas. Below: a read-only textarea with the generated prompt. The textarea auto-adjusts height to its content. A "Copy Prompt" button copies the textarea content to clipboard and temporarily changes its label to "Copied!" for 2 seconds. A "Start Over" button clears all query params and returns to screen 1. A "Back" button returns to screen 3. Below the textarea: AI assistants section generated from CONFIG.ai_assistants. Below that: links section generated from CONFIG.placeholder_links. At the bottom: GitHub link from CONFIG.github_url.
+
+AI ASSISTANTS
+
+Links with img icons and names are generated from CONFIG.ai_assistants. Icons are displayed at 32x32px. SVG icons must render correctly in both themes. Links open in a new tab.
+
+PROMPT GENERATION LOGIC
+
+The generated prompt must be plain text with no emoji, no HTML, no Markdown, and no special formatting of any kind. The prompt is divided into logical paragraphs separated by blank lines for comfortable human reading. Every prompt variant must include a strict prohibition against the AI inventing facts, making unsourced assumptions, or presenting unverified information. The prompt must require relying only on real user reports, discussions, and public sources. Reddit is a mandatory but not exclusive source. If a language is specified — the prompt must explicitly require the AI to respond in that language. If no language is specified — the response must be in English.
+
+The prompt must always include verification of the following aspects:
+
+Hardware issues: overheating under load and during normal use, CPU and GPU throttling after sustained load, battery degradation, component instability, build quality issues.
+
+Software issues: app freezes and crashes, unstable firmware updates, post-update bugs, performance degradation over time, RAM management and background process handling problems.
+
+Ads and privacy: built-in advertising in the system interface, spyware and adware in stock firmware, forced app installation without user consent, inability to disable or remove intrusive system apps, collection and transmission of user data without explicit consent.
+
+Sensors and hardware compromises: presence of a virtual (software-based) proximity sensor instead of a dedicated hardware infrared sensor. The prompt must explicitly require checking whether the device uses software emulation of the proximity sensor via accelerometer or ambient light sensor instead of a dedicated hardware IR sensor, and if so — describe real user complaints about incorrect screen behavior during phone calls.
+
+Regional differences: firmware differences across markets, regional feature restrictions, presence of additional bloatware in regional versions.
+
+Time on market: if the model has been on the market for less than one year — the prompt must explicitly require warning the user about insufficient independent long-term reviews.
+
+Alternatives: the prompt must require suggesting specific alternative models without the described issues.
+
+Prompt variants depending on filled fields:
+
+If nothing is specified (or only language): a general worldwide prompt for choosing a smartphone based on real user discussions.
+
+If only country is specified (or country + language): the prompt accounts for regional specifics, model availability, regional firmware, restrictions, and user complaints specific to that region.
+
+If one smartphone is specified (with or without country and language): the prompt focuses on analyzing that specific model checking all aspects from the list above, taking the country into account if specified.
+
+If multiple smartphones are specified: the prompt requires a comparative analysis of all specified models. For each aspect from the list above, the AI must compare the models against each other based on real user reports and public discussions — not abstract specifications. The comparison must be structured by aspect rather than by model — meaning hardware is covered across all models first, then software across all models, and so on. At the end there must be a summary recommendation of which model is the better choice and why, taking the country into account if specified. If independent long-term reviews are insufficient for any of the models — the AI must explicitly state this.
