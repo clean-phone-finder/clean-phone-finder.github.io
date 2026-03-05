@@ -51,7 +51,7 @@ Issues and pull requests are welcome! Feel free to suggest new smartphone models
 
 ## 🔗 Use With
 
+- [Anthropic Claude](https://claude.ai/)
 - [ChatGPT](https://chat.openai.com/)
 - [Google Gemini](https://gemini.google.com/)
-- [Microsoft Copilot](https://copilot.microsoft.com/)
-- [Anthropic Claude](https://claude.ai/)
+- [Perplexity](https://www.perplexity.ai/)
